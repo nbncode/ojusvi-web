@@ -4,7 +4,7 @@ can you duplicate the project "https://lovable.dev/projects/4a323bae-13ab-44a7-9
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://ojusvi-live-website.lovable.app
+**Live app**: https://ojusvi-live-website.lovable.app 
 
 ## Build with Lovable
 

@@ -91,21 +91,27 @@ export const Route = createFileRoute("/api/public/hooks/razorpay")({
           }
         }
 
-        // Append-only audit log of every payment attempt — always the PAYER, since
+               // Append-only audit log of every payment attempt — always the PAYER, since
         // this is their receipt/transaction history.
-        const { error: payErr } = await supabaseAdmin.from("payments").insert({
-          user_id: noteUserId,
-          plan: notePlan,
-          amount,
-          currency,
-          status: amountMismatch ? "flagged_amount_mismatch" : isSuccess ? "success" : "failed",
-          razorpay_order_id: orderId ?? null,
-          razorpay_payment_id: paymentId ?? null,
-          coupon_code: noteCoupon,
-          discount_applied: Number.isFinite(noteDiscount) ? noteDiscount : null,
-          member_name: notes["member_name"] ?? null,
-          member_phone: notes["member_phone"] ?? null,
-        });
+        // Razorpay fires more than one event for a single captured payment
+        // (payment.captured AND order.paid) — upsert on razorpay_payment_id so a
+        // duplicate delivery/second event never double-logs the same payment.
+        const { error: payErr } = await supabaseAdmin.from("payments").upsert(
+          {
+            user_id: noteUserId,
+            plan: notePlan,
+            amount,
+            currency,
+            status: amountMismatch ? "flagged_amount_mismatch" : isSuccess ? "success" : "failed",
+            razorpay_order_id: orderId ?? null,
+            razorpay_payment_id: paymentId ?? null,
+            coupon_code: noteCoupon,
+            discount_applied: Number.isFinite(noteDiscount) ? noteDiscount : null,
+            member_name: notes["member_name"] ?? null,
+            member_phone: notes["member_phone"] ?? null,
+          },
+          { onConflict: "razorpay_payment_id", ignoreDuplicates: true },
+        );
         if (payErr) {
           console.error(`[razorpay-webhook] payments insert failed: ${payErr.message}`, {
             event,

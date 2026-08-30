@@ -2,13 +2,13 @@ import { Pillar } from "./Pillar";
 import { Divider } from "./Sprig";
 import { YogaSystem } from "./YogaSystem";
 import mentalWellnessPhoto from "@/assets/mental-wellness.webp";
-import physicalWellnessAsset from "@/assets/physical-wellness-couple.webp.asset.json";
-const physicalWellnessPhoto = physicalWellnessAsset.url;
+import physicalWellnessAsset from "@/assets/physical-wellness-couple.webp";
+const physicalWellnessPhoto = physicalWellnessAsset;
 import spiritualWellnessPhoto from "@/assets/spiritual-wellness-praying.webp";
-import samvitAsset from "@/assets/samvit-medicines.webp.asset.json";
-const samvitPhoto = samvitAsset.url;
-import tambolaAsset from "@/assets/tambola-cozy.webp.asset.json";
-const tambolaPhoto = tambolaAsset.url;
+import samvitAsset from "@/assets/samvit-medicines.webp";
+const samvitPhoto = samvitAsset;
+import tambolaAsset from "@/assets/tambola-cozy.webp";
+const tambolaPhoto = tambolaAsset;
 
 export function PillarsSection() {
   return (

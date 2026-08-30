@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useIsMobile } from "@/hooks/use-mobile";
-import codeA from "@/assets/codes/A.webp.asset.json";
-import codeB from "@/assets/codes/B.webp.asset.json";
-import codeC from "@/assets/codes/C.webp.asset.json";
-import codeD from "@/assets/codes/D.webp.asset.json";
-import codeE from "@/assets/codes/E.webp.asset.json";
-import codeF from "@/assets/codes/F.webp.asset.json";
-import codeG from "@/assets/codes/G.webp.asset.json";
-import codeH from "@/assets/codes/H.webp.asset.json";
-import ojusviIcon from "@/assets/ojusvi-icon.webp.asset.json";
+import codeA from "@/assets/codes/A.webp";
+import codeB from "@/assets/codes/B.webp";
+import codeC from "@/assets/codes/C.webp";
+import codeD from "@/assets/codes/D.webp";
+import codeE from "@/assets/codes/E.webp";
+import codeF from "@/assets/codes/F.webp";
+import codeG from "@/assets/codes/G.webp";
+import codeH from "@/assets/codes/H.webp";
+import ojusviIcon from "@/assets/ojusvi-icon.webp";
 
 type Code = {
   letter: string;
@@ -19,14 +19,14 @@ type Code = {
 };
 
 const codes: Code[] = [
-  { letter: "A", title: "Mobility & Breath", body: "For stiffness, flexibility, joint opening and breath awareness.", icon: codeA.url },
-  { letter: "B", title: "BP & Stress Safe", body: "A calm, low-strain practice for relaxation and nervous system balance.", icon: codeB.url },
-  { letter: "C", title: "Metabolic Health", body: "Focused on diabetes, cholesterol, fatty liver, obesity and abdominal weight.", icon: codeC.url },
-  { letter: "D", title: "Joint & Back Pain", body: "Gentle practices for osteoarthritis, spine comfort and joint mobility.", icon: codeD.url },
-  { letter: "E", title: "Thyroid & Energy", body: "Supports energy rhythm, fatigue management and gentle activation.", icon: codeE.url },
-  { letter: "F", title: "Sleep & Anxiety Reset", body: "Slow, calming sessions for better sleep and nervous system recovery.", icon: codeF.url },
-  { letter: "G", title: "Strength & Balance", body: "Builds posture, stability, balance and core strength.", icon: codeG.url },
-  { letter: "H", title: "Gentle Recovery", body: "A conservative session for pain-sensitive or BP-sensitive days.", icon: codeH.url },
+  { letter: "A", title: "Mobility & Breath", body: "For stiffness, flexibility, joint opening and breath awareness.", icon: codeA },
+  { letter: "B", title: "BP & Stress Safe", body: "A calm, low-strain practice for relaxation and nervous system balance.", icon: codeB },
+  { letter: "C", title: "Metabolic Health", body: "Focused on diabetes, cholesterol, fatty liver, obesity and abdominal weight.", icon: codeC },
+  { letter: "D", title: "Joint & Back Pain", body: "Gentle practices for osteoarthritis, spine comfort and joint mobility.", icon: codeD },
+  { letter: "E", title: "Thyroid & Energy", body: "Supports energy rhythm, fatigue management and gentle activation.", icon: codeE },
+  { letter: "F", title: "Sleep & Anxiety Reset", body: "Slow, calming sessions for better sleep and nervous system recovery.", icon: codeF },
+  { letter: "G", title: "Strength & Balance", body: "Builds posture, stability, balance and core strength.", icon: codeG },
+  { letter: "H", title: "Gentle Recovery", body: "A conservative session for pain-sensitive or BP-sensitive days.", icon: codeH },
 ];
 
 const VIEW = 520;
@@ -247,7 +247,7 @@ export function WellnessWheel() {
                 strokeWidth={1}
               />
               <image
-                href={ojusviIcon.url}
+                href={ojusviIcon}
                 x={CENTER - hubR * 0.7}
                 y={CENTER - hubR * 0.7}
                 width={hubR * 1.4}

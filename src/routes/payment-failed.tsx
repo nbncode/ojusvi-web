@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { XCircle, Phone, MessageCircle, ArrowLeft } from "lucide-react";
 import { z } from "zod";
 
-import logoAsset from "@/assets/ojusvi-logo-round-256.webp.asset.json";
+import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
 
-const logoRound = logoAsset.url;
+const logoRound = logoAsset;
 
 const searchSchema = z.object({
   reason: z.enum(["failed", "dismissed", "order"]).optional(),

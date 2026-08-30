@@ -8,8 +8,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import trioAsset from "@/assets/yoga-program-trio.webp.asset.json";
-import breathworkAsset from "@/assets/yoga-program-breathwork.webp.asset.json";
+import trioAsset from "@/assets/yoga-program-trio.webp";
+import breathworkAsset from "@/assets/yoga-program-breathwork.webp";
 import { WellnessWheel } from "./WellnessWheel";
 
 const pillars = [
@@ -133,7 +133,7 @@ export function YogaSystem() {
             <Reveal delay={120}>
               <Polaroid rotate={-2}>
                 <img
-                  src={trioAsset.url}
+                  src={trioAsset}
                   alt="Structured Ojusvi yoga wellness program visual"
                   loading="lazy"
                   decoding="async"
@@ -191,7 +191,7 @@ export function YogaSystem() {
           <Reveal delay={120}>
             <div className="mt-12 overflow-hidden rounded-[2px] bg-parchment-deep shadow-[0_8px_30px_-20px_rgba(31,58,43,0.25)]">
               <img
-                src={breathworkAsset.url}
+                src={breathworkAsset}
                 alt="Ojusvi 52-week yoga calendar progression visual"
                 loading="lazy"
                 decoding="async"

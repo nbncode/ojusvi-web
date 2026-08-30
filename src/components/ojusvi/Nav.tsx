@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logoAsset from "@/assets/ojusvi-logo-round-256.webp.asset.json";
-const logoRound = logoAsset.url;
+import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
+const logoRound = logoAsset;
 
 const links = [
   { label: "Why Ojusvi", href: "/#why" },

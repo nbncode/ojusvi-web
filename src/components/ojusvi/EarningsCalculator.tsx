@@ -7,9 +7,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
-import logoAsset from "@/assets/ojusvi-logo-round-256.webp.asset.json";
+import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
 
-const logoRound = logoAsset.url;
+const logoRound = logoAsset;
 
 type ModelKey = "A" | "B" | "C";
 

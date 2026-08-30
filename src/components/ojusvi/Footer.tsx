@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/ojusvi-logo-flat.webp.asset.json";
-const logoRound = logoAsset.url;
+import logoAsset from "@/assets/ojusvi-logo-flat.webp";
+const logoRound = logoAsset;
 
 function HandIcon({
   href,

@@ -8,9 +8,9 @@ import { validateCoupon } from "@/lib/coupons.functions";
 import { sendOtp, verifyOtp } from "@/lib/otp.functions";
 import { supabase } from "@/integrations/supabase/client";
 
-import logoAsset from "@/assets/ojusvi-logo-round-256.webp.asset.json";
+import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
 
-const logoRound = logoAsset.url;
+const logoRound = logoAsset;
 
 export const Route = createFileRoute("/pay")({
   head: () => ({

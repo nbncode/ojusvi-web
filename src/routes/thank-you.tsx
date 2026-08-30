@@ -4,9 +4,9 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { checkOrderStatus } from "@/lib/subscription.functions";
-import logoAsset from "@/assets/ojusvi-logo-round-256.webp.asset.json";
+import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
 
-const logoRound = logoAsset.url;
+const logoRound = logoAsset;
 
 export const Route = createFileRoute("/thank-you")({
   validateSearch: z.object({ order: z.string().optional() }),

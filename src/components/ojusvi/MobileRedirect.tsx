@@ -4,8 +4,8 @@ const APP_STORE_URL = "https://apps.apple.com/us/app/ojusvi/id6792540529";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.ojusvi.app";
 
-const REDIRECT_MS = 8000;
-const MESSAGE_MS = 5500;
+const REDIRECT_MS = 4000;
+const MESSAGE_MS = 2000;
 const SCROLL_THRESHOLD = 120; // px of vertical movement treated as intentional
 
 function getMobileStoreUrl(): string | null {

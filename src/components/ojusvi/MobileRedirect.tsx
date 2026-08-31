@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const APP_STORE_URL = "https://apps.apple.com/us/app/ojusvi/id6792540529";
 const PLAY_STORE_URL =
@@ -6,7 +6,6 @@ const PLAY_STORE_URL =
 
 const REDIRECT_MS = 4000;
 const MESSAGE_MS = 2000;
-const SCROLL_THRESHOLD = 120; // px of vertical movement treated as intentional
 
 function getMobileStoreUrl(): string | null {
   const ua = navigator.userAgent || "";
@@ -18,22 +17,14 @@ function getMobileStoreUrl(): string | null {
 }
 
 /**
- * Subtle, cancellable mobile auto-redirect notice.
- * Renders a small non-blocking message near the download CTA shortly before
- * redirecting mobile visitors to their app store. Cancels permanently on any
- * intentional interaction (scroll past threshold, tap, click, keypress).
+ * Mobile auto-redirect notice. Redirects mobile visitors to their app store
+ * unconditionally after REDIRECT_MS, regardless of scrolling, tapping, or
+ * key presses. Desktop never redirects.
  */
 export function MobileRedirectNotice() {
   const [storeUrl, setStoreUrl] = useState<string | null>(null);
   const [showMessage, setShowMessage] = useState(false);
   const [progress, setProgress] = useState(0);
-  const cancelledRef = useRef(false);
-  const startYRef = useRef<number | null>(null);
-
-  const cancel = useCallback(() => {
-    cancelledRef.current = true;
-    setShowMessage(false);
-  }, []);
 
   useEffect(() => {
     const url = getMobileStoreUrl();
@@ -41,44 +32,25 @@ export function MobileRedirectNotice() {
     setStoreUrl(url);
 
     const redirectTimer = window.setTimeout(() => {
-      if (!cancelledRef.current) window.location.href = url;
+      window.location.href = url;
     }, REDIRECT_MS);
 
     const messageTimer = window.setTimeout(() => {
-      if (!cancelledRef.current) setShowMessage(true);
+      setShowMessage(true);
     }, MESSAGE_MS);
 
     const progressTimer = window.setInterval(() => {
-      if (!cancelledRef.current)
-        setProgress((p) => Math.min(100, p + 100 / ((REDIRECT_MS - MESSAGE_MS) / 250)));
+      setProgress((p) => Math.min(100, p + 100 / ((REDIRECT_MS - MESSAGE_MS) / 250)));
     }, 250);
-
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (startYRef.current === null) {
-        startYRef.current = y;
-        return;
-      }
-      if (Math.abs(y - startYRef.current) > SCROLL_THRESHOLD) cancel();
-    };
-    const onPointer = () => cancel();
-    const onKey = () => cancel();
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("pointerdown", onPointer, { passive: true });
-    window.addEventListener("keydown", onKey);
 
     return () => {
       window.clearTimeout(redirectTimer);
       window.clearTimeout(messageTimer);
       window.clearInterval(progressTimer);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("pointerdown", onPointer);
-      window.removeEventListener("keydown", onKey);
     };
-  }, [cancel]);
+  }, []);
 
-  if (!storeUrl || !showMessage || cancelledRef.current) return null;
+  if (!storeUrl || !showMessage) return null;
 
   const isIos = storeUrl === APP_STORE_URL;
 

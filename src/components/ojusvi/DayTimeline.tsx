@@ -52,7 +52,7 @@ export function DayTimeline() {
                   <p className="font-serif italic text-forest text-[22px] leading-none">
                     {g.label}
                   </p>
-                  <p className="font-sans tabular-nums text-forest/60 text-[12px]">
+                  <p className="font-sans tabular-nums text-forest/85 text-[13px]">
                     {g.range}
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export function DayTimeline() {
               </article>
             ))}
           </div>
-          <p className="mt-2 text-center font-serif italic text-forest/60 text-[13px]">
+          <p className="mt-2 text-center font-serif italic text-forest/85 text-[14px]">
             swipe through the day →
           </p>
         </div>

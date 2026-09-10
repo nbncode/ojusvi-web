@@ -9,7 +9,7 @@ const steps = [
   {
     n: "02",
     title: "Pick your language.",
-    body: "Hindi, Bangla, Gujarati, Telugu, Tamil — six in all. Everything inside speaks back to you in your tongue.",
+    body: "Hindi, Bangla, Marathi, Telugu, Tamil — six in all. Everything inside speaks back to you in your tongue.",
   },
   {
     n: "03",

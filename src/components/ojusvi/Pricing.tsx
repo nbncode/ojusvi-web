@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import { Sprig } from "./Sprig";
 import {
@@ -97,7 +98,7 @@ const benefits: Benefit[] = [
 
 export function Pricing() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-  const [plan, setPlan] = useState<"annual" | "monthly">("annual");
+  const [plan, setPlan] = useState<"lite" | "annual" | "monthly">("annual");
   return (
     <>
     <section id="membership" className="relative bg-parchment py-12 md:py-16">
@@ -177,7 +178,7 @@ export function Pricing() {
     </section>
 
     <section id="pricing" className="relative bg-parchment py-12 md:py-16">
-      <div className="mx-auto max-w-[1080px] px-6">
+      <div className="mx-auto max-w-[1200px] px-6">
         <Reveal>
           <div className="text-center">
             <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">
@@ -190,7 +191,7 @@ export function Pricing() {
               Cancel the monthly plan anytime.
             </p>
             <p className="mt-6 mx-auto max-w-[620px] font-serif italic text-forest text-[18px] md:text-[20px] leading-[1.5]">
-              Every plan starts with 30 days free. No card needed. Pay only if you choose to stay.
+              Annual and Monthly plans start with 30 days free. No card needed. Pay only if you choose to stay.
             </p>
           </div>
 
@@ -199,13 +200,23 @@ export function Pricing() {
             <div
               role="tablist"
               aria-label="Choose a plan"
-              className="mx-auto flex max-w-[360px] rounded-full border border-forest/20 bg-parchment-deep/40 p-1"
+              className="mx-auto flex max-w-[420px] rounded-full border border-forest/20 bg-parchment-deep/40 p-1"
             >
+              <button
+                role="tab"
+                aria-selected={plan === "lite"}
+                onClick={() => setPlan("lite")}
+                className={`flex-1 rounded-full py-2.5 text-[12px] font-medium tracking-wide transition ${
+                  plan === "lite" ? "bg-forest text-parchment" : "text-forest/70"
+                }`}
+              >
+                Lite · ₹99
+              </button>
               <button
                 role="tab"
                 aria-selected={plan === "annual"}
                 onClick={() => setPlan("annual")}
-                className={`flex-1 rounded-full py-2.5 text-[13px] font-medium tracking-wide transition ${
+                className={`flex-1 rounded-full py-2.5 text-[12px] font-medium tracking-wide transition ${
                   plan === "annual" ? "bg-forest text-parchment" : "text-forest/70"
                 }`}
               >
@@ -215,7 +226,7 @@ export function Pricing() {
                 role="tab"
                 aria-selected={plan === "monthly"}
                 onClick={() => setPlan("monthly")}
-                className={`flex-1 rounded-full py-2.5 text-[13px] font-medium tracking-wide transition ${
+                className={`flex-1 rounded-full py-2.5 text-[12px] font-medium tracking-wide transition ${
                   plan === "monthly" ? "bg-forest text-parchment" : "text-forest/70"
                 }`}
               >
@@ -224,13 +235,35 @@ export function Pricing() {
             </div>
 
             <div className="mt-6">
-              {plan === "annual" ? (
+              {plan === "lite" ? (
+                <div className="rounded-[4px] bg-parchment-deep/60 border border-forest/20 px-6 py-10 shadow-[0_10px_30px_-20px_rgba(31,58,43,0.25)]">
+                  <div className="text-center">
+                    <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">Lite</p>
+                    <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                      Limited access to some paid events
+                    </p>
+                    <p className="mt-4 font-serif text-forest text-[56px] leading-none">
+                      ₹99<span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">/month</span>
+                    </p>
+                    <p className="mt-3 font-serif italic text-forest/70 text-[14px]">Billed every month · Cancel anytime</p>
+                  </div>
+                  <div className="mt-8 text-center">
+                    <Link to="/offer99" className="inline-flex h-14 w-full max-w-[280px] mx-auto items-center justify-center rounded-full border border-forest bg-transparent px-8 text-forest text-[15px] font-medium tracking-wide transition active:scale-[0.98] hover:bg-forest hover:text-parchment">
+                      Start Lite — ₹99/month
+                    </Link>
+                    <p className="mt-4 font-serif italic text-forest/70 text-[13px]">Limited access. Upgrade anytime.</p>
+                  </div>
+                </div>
+              ) : plan === "annual" ? (
                 <div className="relative rounded-[4px] bg-parchment-deep border-2 border-forest px-6 py-10 shadow-[0_20px_50px_-20px_rgba(31,58,43,0.45)]">
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full bg-forest px-4 py-1 text-parchment text-[11px] font-medium tracking-[0.18em] uppercase">
                     Best Value
                   </span>
                   <div className="text-center">
                     <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">Annual</p>
+                    <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                      Full access
+                    </p>
                     <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                       First 30 days free
                     </p>
@@ -257,6 +290,9 @@ export function Pricing() {
                   <div className="text-center">
                     <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">Monthly</p>
                     <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                      Full access
+                    </p>
+                    <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                       First 30 days free
                     </p>
                     <p className="mt-4 font-serif text-forest text-[56px] leading-none">
@@ -265,9 +301,9 @@ export function Pricing() {
                     <p className="mt-3 font-serif italic text-forest/70 text-[14px]">Billed every month · Cancel anytime</p>
                   </div>
                   <div className="mt-8 text-center">
-                    <a href="/download-app" className="inline-flex h-14 w-full max-w-[280px] mx-auto items-center justify-center rounded-full border border-forest bg-transparent px-8 text-forest text-[15px] font-medium tracking-wide transition active:scale-[0.98] hover:bg-forest hover:text-parchment">
-                      Start 30 days free
-                    </a>
+                    <Link to="/subscribe" className="inline-flex h-14 w-full max-w-[280px] mx-auto items-center justify-center rounded-full border border-forest bg-transparent px-8 text-forest text-[15px] font-medium tracking-wide transition active:scale-[0.98] hover:bg-forest hover:text-parchment">
+                      Subscribe — ₹349/month
+                    </Link>
                     <p className="mt-4 font-serif italic text-forest/70 text-[13px]">Small monthly payment. Stop whenever you like.</p>
                   </div>
                 </div>
@@ -275,16 +311,52 @@ export function Pricing() {
             </div>
           </div>
 
-          {/* Desktop: original two-card layout */}
-          <div className="mt-10 md:mt-14 hidden md:grid grid-cols-2 gap-8 items-stretch">
-            {/* Card 1 — Annual (Recommended) */}
-            <div className="order-1 md:order-1 relative rounded-[4px] bg-parchment-deep border-2 border-forest px-7 py-12 md:px-10 md:py-14 shadow-[0_20px_50px_-20px_rgba(31,58,43,0.45)] md:-translate-y-2 flex flex-col">
+          {/* Desktop: three-column grid */}
+          <div className="mt-10 md:mt-14 hidden md:grid grid-cols-3 gap-6 items-stretch">
+            {/* Card 1 — Lite */}
+            <div className="rounded-[4px] bg-parchment-deep/60 border border-forest/20 px-6 py-12 md:px-8 md:py-14 shadow-[0_10px_30px_-20px_rgba(31,58,43,0.25)] flex flex-col">
+              <div className="text-center">
+                <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">
+                  Lite
+                </p>
+                <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                  Limited access to some paid events
+                </p>
+                <p className="mt-4 font-serif text-forest text-[56px] md:text-[64px] leading-none">
+                  ₹99
+                  <span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">
+                    /month
+                  </span>
+                </p>
+                <p className="mt-3 font-serif italic text-forest/70 text-[15px]">
+                  Billed every month · Cancel anytime
+                </p>
+              </div>
+
+              <div className="mt-auto pt-10 text-center">
+                <Link
+                  to="/offer99"
+                  className="inline-flex h-14 w-full max-w-[280px] mx-auto items-center justify-center rounded-full border border-forest bg-transparent px-8 text-forest text-[15px] font-medium tracking-wide transition active:scale-[0.98] hover:bg-forest hover:text-parchment"
+                >
+                  Start Lite — ₹99/month
+                </Link>
+                <p className="mt-4 font-serif italic text-forest/70 text-[14px]">
+                  Limited access. Upgrade anytime.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 — Annual (Recommended) */}
+            <div className="relative rounded-[4px] bg-parchment-deep border-2 border-forest px-6 py-12 md:px-8 md:py-14 shadow-[0_20px_50px_-20px_rgba(31,58,43,0.45)] md:-translate-y-2 flex flex-col">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full bg-forest px-4 py-1 text-parchment text-[11px] font-medium tracking-[0.18em] uppercase">
                 Best Value
               </span>
               <div className="text-center">
                 <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">
                   Annual
+                </p>
+                <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                  Full access
                 </p>
                 <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                   First 30 days free
@@ -316,11 +388,14 @@ export function Pricing() {
               </div>
             </div>
 
-            {/* Card 2 — Monthly */}
-            <div className="order-2 md:order-2 rounded-[4px] bg-parchment-deep/60 border border-forest/20 px-7 py-10 md:px-10 md:py-12 shadow-[0_10px_30px_-20px_rgba(31,58,43,0.25)] flex flex-col">
+            {/* Card 3 — Monthly */}
+            <div className="rounded-[4px] bg-parchment-deep/60 border border-forest/20 px-6 py-12 md:px-8 md:py-14 shadow-[0_10px_30px_-20px_rgba(31,58,43,0.25)] flex flex-col">
               <div className="text-center">
                 <p className="font-serif italic text-forest/80 text-sm tracking-[0.18em] uppercase">
                   Monthly
+                </p>
+                <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
+                  Full access
                 </p>
                 <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                   First 30 days free
@@ -337,12 +412,12 @@ export function Pricing() {
               </div>
 
               <div className="mt-auto pt-10 text-center">
-                <a
-                  href="/download-app"
+                <Link
+                  to="/subscribe"
                   className="inline-flex h-14 w-full max-w-[280px] mx-auto items-center justify-center rounded-full border border-forest bg-transparent px-8 text-forest text-[15px] font-medium tracking-wide transition active:scale-[0.98] hover:bg-forest hover:text-parchment"
                 >
-                  Start 30 days free
-                </a>
+                  Subscribe — ₹349/month
+                </Link>
                 <p className="mt-4 font-serif italic text-forest/70 text-[14px]">
                   Small monthly payment. Stop whenever you like.
                 </p>

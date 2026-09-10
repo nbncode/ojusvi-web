@@ -69,7 +69,7 @@ export const Route = createFileRoute("/")({
           "@type": "FAQPage",
           mainEntity: [
             { q: "What is Ojusvi?", a: "Ojusvi (ओजस्वी) is a wellness and companionship app for seniors. It brings daily live yoga, guided meditation, panchang and group bhajan/satsang, gentle brain games, live afternoon Tambola with the community, and Samvit — a medicine, records and health tracker — all in your language, from the comfort of home." },
-            { q: "Which languages does Ojusvi support?", a: "English, Hindi, Bangla, Gujarati, Telugu, Tamil. Every screen in your language." },
+            { q: "Which languages does Ojusvi support?", a: "English, Hindi, Bangla, Marathi, Telugu, Tamil. Every screen in your language." },
             { q: "How do the sessions work?", a: "A real teacher, on video, at a fixed time each day. You join from the app, see the others in the class, and follow along." },
             { q: "Can I try it before paying?", a: "Yes. Every user gets the first 30 days completely free, no card needed. You only pay if you decide to continue." },
             { q: "Is my data safe?", a: "We never share your number. Health entries stay encrypted on our servers and are visible only to you. Read our two-minute privacy policy for the details." },
@@ -83,7 +83,8 @@ export const Route = createFileRoute("/")({
             { q: "What types of sessions are offered?", a: "Ojusvi offers yoga, pranayama, guided meditation, breathing exercises, and holistic wellness sessions, along with devotional content — all thoughtfully designed for different health goals and spiritual needs." },
             { q: "How long are the sessions?", a: "Sessions typically range from 45 to 60 minutes." },
             { q: "Which devices can I use?", a: "Ojusvi works on Android and iOS smartphones and tablets." },
-            { q: "Will the instructors change over time?", a: "Instructors may be rotated periodically. However, all sessions are led by certified wellness professionals, and Ojusvi maintains a consistent standard of quality and care across all instructors." },
+{ q: "Will the instructors change over time?", a: "Instructors may be rotated periodically. However, all sessions are led by certified wellness professionals, and Ojusvi maintains a consistent standard of quality and care across all instructors." },
+            { q: "How can I reach you?", a: "Reach us by email at hello@ojusvi.app, or on WhatsApp at +91 99589 05337 — we're happy to help." },
             { q: "I'm facing technical issues. How can I get help?", a: "Please reach out to our support team on email or on whatsapp or through in-app chat and we'll be happy to assist you." },
           ].map(({ q, a }) => ({
             "@type": "Question",

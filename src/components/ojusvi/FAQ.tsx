@@ -11,7 +11,7 @@ const allFaqs: FAQ[] = [
   },
   {
     q: "Which languages does Ojusvi support?",
-    a: "English, Hindi, Bangla, Gujarati, Telugu, Tamil. Every screen in your language.",
+    a: "English, Hindi, Bangla, Marathi, Telugu, Tamil. Every screen in your language.",
   },
   {
     q: "How do the sessions work?",
@@ -65,9 +65,13 @@ const allFaqs: FAQ[] = [
     q: "Which devices can I use?",
     a: "Ojusvi works on Android and iOS smartphones and tablets.",
   },
-  {
+{
     q: "Will the instructors change over time?",
     a: "Instructors may be rotated periodically. However, all sessions are led by certified wellness professionals, and Ojusvi maintains a consistent standard of quality and care across all instructors.",
+  },
+  {
+    q: "How can I reach you?",
+    a: "Reach us by __EMAIL__ at hello@ojusvi.app, or on __WHATSAPP__ at +91 99589 05337 — we're happy to help.",
   },
   {
     q: "I'm facing technical issues. How can I get help?",
@@ -110,9 +114,10 @@ const groups: Group[] = [
   },
   {
     title: "Trust & support",
-    items: pick(
+items: pick(
       "Is my data safe?",
       "Can I share Ojusvi with my mother / sister / friend?",
+      "How can I reach you?",
       "I'm facing technical issues. How can I get help?",
     ),
   },

@@ -9,6 +9,7 @@ const logoRound = logoAsset;
 const searchSchema = z.object({
   reason: z.enum(["failed", "dismissed", "order"]).optional(),
   order: z.string().optional(),
+  from: z.string().optional(),
 });
 
 export const Route = createFileRoute("/payment-failed")({
@@ -54,7 +55,7 @@ const MESSAGES: Record<"failed" | "dismissed" | "order", { heading: string; body
 };
 
 function PaymentFailed() {
-  const { reason, order } = Route.useSearch();
+  const { reason, order, from } = Route.useSearch();
   const currentReason: keyof typeof MESSAGES =
     reason === "failed" || reason === "dismissed" || reason === "order" ? reason : "failed";
   const message = MESSAGES[currentReason];
@@ -83,8 +84,8 @@ function PaymentFailed() {
         )}
 
         <div className="mt-8 flex w-full max-w-md flex-col gap-4">
-          <Link
-            to="/pay"
+<Link
+            to={from === "/subscribe" || from === "/offer99" ? from : "/pay"}
             className="inline-flex h-14 items-center justify-center gap-3 rounded-full bg-forest px-10 text-[18px] text-parchment tracking-wide transition hover:bg-forest-deep active:scale-[0.99]"
           >
             <ArrowLeft className="h-5 w-5" aria-hidden="true" />

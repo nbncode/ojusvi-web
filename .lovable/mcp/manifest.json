@@ -89,7 +89,7 @@
       {
         "name": "get_my_membership",
         "title": "Get my Ojusvi membership",
-        "description": "Check the signed-in user's Ojusvi membership: plan, status and current period.",
+        "description": "Check the signed-in user's Ojusvi membership: plan, access tier, status, current period and expiry.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,

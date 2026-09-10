@@ -16,20 +16,26 @@ import { Route as DownloadRouteImport } from './routes/download'
 import { Route as DownloadAppRouteImport } from './routes/download-app'
 import { Route as EarningcalcRouteImport } from './routes/earningcalc'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as Offer99RouteImport } from './routes/offer99'
 import { Route as PayRouteImport } from './routes/pay'
 import { Route as PaymentFailedRouteImport } from './routes/payment-failed'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SubscribeRouteImport } from './routes/subscribe'
+import { Route as SubscribedRouteImport } from './routes/subscribed'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as ApiCreateSubscriptionRouteImport } from './routes/api/create-subscription'
+import { Route as ApiVerifySubscriptionRouteImport } from './routes/api/verify-subscription'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 import { Route as ApiPublicCronAlertMismatchesRouteImport } from './routes/api/public/cron/alert-mismatches'
 import { Route as ApiPublicHooksRazorpayRouteImport } from './routes/api/public/hooks/razorpay'
+import { Route as ApiPublicHooksRazorpaySubscriptionRouteImport } from './routes/api/public/hooks/razorpay-subscription'
 import { Route as ApiPublicHooksSyncInstructorApplicationRouteImport } from './routes/api/public/hooks/sync-instructor-application'
 
 const IndexRoute = IndexRouteImport.update({
@@ -67,6 +73,11 @@ const McpRoute = McpRouteImport.update({
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Offer99Route = Offer99RouteImport.update({
+  id: '/offer99',
+  path: '/offer99',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PayRoute = PayRouteImport.update({
   id: '/pay',
   path: '/pay',
@@ -97,6 +108,16 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SubscribeRoute = SubscribeRouteImport.update({
+  id: '/subscribe',
+  path: '/subscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubscribedRoute = SubscribedRouteImport.update({
+  id: '/subscribed',
+  path: '/subscribed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -119,6 +140,16 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiCreateSubscriptionRoute = ApiCreateSubscriptionRouteImport.update({
+  id: '/api/create-subscription',
+  path: '/api/create-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiVerifySubscriptionRoute = ApiVerifySubscriptionRouteImport.update({
+  id: '/api/verify-subscription',
+  path: '/api/verify-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
   id: '/.lovable/oauth/consent',
   path: '/.lovable/oauth/consent',
@@ -141,6 +172,12 @@ const ApiPublicHooksRazorpayRoute = ApiPublicHooksRazorpayRouteImport.update({
   path: '/api/public/hooks/razorpay',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksRazorpaySubscriptionRoute =
+  ApiPublicHooksRazorpaySubscriptionRouteImport.update({
+    id: '/api/public/hooks/razorpay-subscription',
+    path: '/api/public/hooks/razorpay-subscription',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicHooksSyncInstructorApplicationRoute =
   ApiPublicHooksSyncInstructorApplicationRouteImport.update({
     id: '/api/public/hooks/sync-instructor-application',
@@ -156,20 +193,26 @@ export interface FileRoutesByFullPath {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/mcp': typeof McpRoute
+  '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
   '/payment-failed': typeof PaymentFailedRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/subscribe': typeof SubscribeRoute
+  '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
+  '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
 }
 export interface FileRoutesByTo {
@@ -180,20 +223,26 @@ export interface FileRoutesByTo {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/mcp': typeof McpRoute
+  '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
   '/payment-failed': typeof PaymentFailedRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/subscribe': typeof SubscribeRoute
+  '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
+  '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
 }
 export interface FileRoutesById {
@@ -205,20 +254,26 @@ export interface FileRoutesById {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/mcp': typeof McpRoute
+  '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
   '/payment-failed': typeof PaymentFailedRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/subscribe': typeof SubscribeRoute
+  '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
+  '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
 }
 export interface FileRouteTypes {
@@ -231,20 +286,26 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/mcp'
+    | '/offer99'
     | '/pay'
     | '/payment-failed'
     | '/privacy'
     | '/refund'
     | '/security'
     | '/sitemap.xml'
+    | '/subscribe'
+    | '/subscribed'
     | '/terms'
     | '/thank-you'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/create-subscription'
+    | '/api/verify-subscription'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/cron/alert-mismatches'
     | '/api/public/hooks/razorpay'
+    | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -255,20 +316,26 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/mcp'
+    | '/offer99'
     | '/pay'
     | '/payment-failed'
     | '/privacy'
     | '/refund'
     | '/security'
     | '/sitemap.xml'
+    | '/subscribe'
+    | '/subscribed'
     | '/terms'
     | '/thank-you'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/create-subscription'
+    | '/api/verify-subscription'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/cron/alert-mismatches'
     | '/api/public/hooks/razorpay'
+    | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
   id:
     | '__root__'
@@ -279,20 +346,26 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/mcp'
+    | '/offer99'
     | '/pay'
     | '/payment-failed'
     | '/privacy'
     | '/refund'
     | '/security'
     | '/sitemap.xml'
+    | '/subscribe'
+    | '/subscribed'
     | '/terms'
     | '/thank-you'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/api/create-subscription'
+    | '/api/verify-subscription'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/cron/alert-mismatches'
     | '/api/public/hooks/razorpay'
+    | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
   fileRoutesById: FileRoutesById
 }
@@ -304,20 +377,26 @@ export interface RootRouteChildren {
   DownloadAppRoute: typeof DownloadAppRoute
   EarningcalcRoute: typeof EarningcalcRoute
   McpRoute: typeof McpRoute
+  Offer99Route: typeof Offer99Route
   PayRoute: typeof PayRoute
   PaymentFailedRoute: typeof PaymentFailedRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SubscribeRoute: typeof SubscribeRoute
+  SubscribedRoute: typeof SubscribedRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  ApiCreateSubscriptionRoute: typeof ApiCreateSubscriptionRoute
+  ApiVerifySubscriptionRoute: typeof ApiVerifySubscriptionRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicCronAlertMismatchesRoute: typeof ApiPublicCronAlertMismatchesRoute
   ApiPublicHooksRazorpayRoute: typeof ApiPublicHooksRazorpayRoute
+  ApiPublicHooksRazorpaySubscriptionRoute: typeof ApiPublicHooksRazorpaySubscriptionRoute
   ApiPublicHooksSyncInstructorApplicationRoute: typeof ApiPublicHooksSyncInstructorApplicationRoute
 }
 
@@ -372,6 +451,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/offer99': {
+      id: '/offer99'
+      path: '/offer99'
+      fullPath: '/offer99'
+      preLoaderRoute: typeof Offer99RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pay': {
       id: '/pay'
       path: '/pay'
@@ -414,6 +500,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/subscribe': {
+      id: '/subscribe'
+      path: '/subscribe'
+      fullPath: '/subscribe'
+      preLoaderRoute: typeof SubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subscribed': {
+      id: '/subscribed'
+      path: '/subscribed'
+      fullPath: '/subscribed'
+      preLoaderRoute: typeof SubscribedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -440,6 +540,20 @@ declare module '@tanstack/react-router' {
       path: '/.well-known/oauth-protected-resource'
       fullPath: '/.well-known/oauth-protected-resource'
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/create-subscription': {
+      id: '/api/create-subscription'
+      path: '/api/create-subscription'
+      fullPath: '/api/create-subscription'
+      preLoaderRoute: typeof ApiCreateSubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/verify-subscription': {
+      id: '/api/verify-subscription'
+      path: '/api/verify-subscription'
+      fullPath: '/api/verify-subscription'
+      preLoaderRoute: typeof ApiVerifySubscriptionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.lovable/oauth/consent': {
@@ -470,6 +584,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicHooksRazorpayRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/razorpay-subscription': {
+      id: '/api/public/hooks/razorpay-subscription'
+      path: '/api/public/hooks/razorpay-subscription'
+      fullPath: '/api/public/hooks/razorpay-subscription'
+      preLoaderRoute: typeof ApiPublicHooksRazorpaySubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/hooks/sync-instructor-application': {
       id: '/api/public/hooks/sync-instructor-application'
       path: '/api/public/hooks/sync-instructor-application'
@@ -488,21 +609,28 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadAppRoute: DownloadAppRoute,
   EarningcalcRoute: EarningcalcRoute,
   McpRoute: McpRoute,
+  Offer99Route: Offer99Route,
   PayRoute: PayRoute,
   PaymentFailedRoute: PaymentFailedRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SubscribeRoute: SubscribeRoute,
+  SubscribedRoute: SubscribedRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  ApiCreateSubscriptionRoute: ApiCreateSubscriptionRoute,
+  ApiVerifySubscriptionRoute: ApiVerifySubscriptionRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicCronAlertMismatchesRoute: ApiPublicCronAlertMismatchesRoute,
   ApiPublicHooksRazorpayRoute: ApiPublicHooksRazorpayRoute,
+  ApiPublicHooksRazorpaySubscriptionRoute:
+    ApiPublicHooksRazorpaySubscriptionRoute,
   ApiPublicHooksSyncInstructorApplicationRoute:
     ApiPublicHooksSyncInstructorApplicationRoute,
 }

@@ -12,6 +12,7 @@ import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AnalyticsLoader } from "../components/AnalyticsLoader";
 
 function NotFoundComponent() {
   return (
@@ -89,9 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ojusvi — Vitality, Brilliance, Strength from within" },
       { name: "twitter:description", content: "A wellness, community and health app for seniors 55+ and their families — daily yoga, live Tambola, and Samvit medicine & records tracking, in your language. Start with 30 days free." },
-      { property: "og:image", content: "https://ojusvi.app/og-image.jpg" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
+{ property: "og:image", content: "https://ojusvi.app/og-image.jpg" },
+      { property: "og:image:width", content: "1086" },
+      { property: "og:image:height", content: "1448" },
       { name: "twitter:image", content: "https://ojusvi.app/og-image.jpg" },
     ],
     scripts: [
@@ -108,12 +109,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         }),
       },
       {
-        type: "text/javascript",
-        children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-53R49PBJ');`,
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Ojusvi",
+          url: "https://ojusvi.app",
+        }),
       },
       {
-        type: "text/javascript",
-        children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1003917755730830');fbq('track','PageView');`,
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Ojusvi",
+          applicationCategory: "HealthApplication",
+          operatingSystem: "Android, iOS",
+          description:
+            "Daily yoga, panchang, group satsang, gentle games, and quiet companionship — a wellness app for seniors 55+ and their families, in your language.",
+          url: "https://ojusvi.app",
+          image: "https://ojusvi.app/og-image.jpg",
+          offers: [
+            {
+              "@type": "Offer",
+              name: "Annual (billed once for 12 months)",
+              price: "249",
+              priceCurrency: "INR",
+              description: "₹2,988 billed once for 12 months — works out to ₹249/month.",
+              url: "https://ojusvi.app/#pricing",
+            },
+            {
+              "@type": "Offer",
+              name: "Monthly",
+              price: "349",
+              priceCurrency: "INR",
+              description: "Billed monthly, cancel anytime.",
+              url: "https://ojusvi.app/#pricing",
+            },
+          ],
+        }),
       },
     ],
     links: [
@@ -124,11 +158,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "apple-touch-icon", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Fonts are self-hosted (see src/styles.css @font-face) so there is no
+      // third-party round trip; the two above-the-fold faces are preloaded to
+      // avoid a late swap that would reflow the hero.
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Yatra+One&family=Caveat:wght@600&display=swap",
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/plus-jakarta-sans-400-normal-latin.woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/cormorant-garamond-500-normal-latin.woff2",
+        crossOrigin: "anonymous",
       },
     ],
   }),
@@ -176,6 +221,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <AnalyticsLoader />
     </QueryClientProvider>
   );
 }

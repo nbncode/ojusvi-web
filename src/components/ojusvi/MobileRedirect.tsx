@@ -7,8 +7,14 @@ const PLAY_STORE_URL =
 const REDIRECT_MS = 4000;
 const MESSAGE_MS = 2000;
 
+// Crawlers, previews and auditing tools must never be redirected: a bot that
+// lands on the homepage and gets sent to a store listing can't index the page.
+const BOT_RE =
+  /bot|crawl|spider|slurp|lighthouse|pagespeed|chrome-lighthouse|headless|preview|facebookexternalhit|whatsapp|embed|bingpreview|google-inspectiontool/i;
+
 function getMobileStoreUrl(): string | null {
   const ua = navigator.userAgent || "";
+  if (BOT_RE.test(ua)) return null;
   if (/iPhone|iPod|iPad/.test(ua)) return APP_STORE_URL;
   if (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
     return APP_STORE_URL;
@@ -17,9 +23,10 @@ function getMobileStoreUrl(): string | null {
 }
 
 /**
- * Mobile auto-redirect notice. Redirects mobile visitors to their app store
- * unconditionally after REDIRECT_MS, regardless of scrolling, tapping, or
- * key presses. Desktop never redirects.
+ * Subtle mobile auto-redirect notice.
+ * Renders a small non-blocking message near the download CTA shortly before
+ * redirecting mobile visitors to their app store. The redirect fires at
+ * REDIRECT_MS regardless of scroll, tap, or keypress; desktop never redirects.
  */
 export function MobileRedirectNotice() {
   const [storeUrl, setStoreUrl] = useState<string | null>(null);
@@ -50,25 +57,29 @@ export function MobileRedirectNotice() {
     };
   }, []);
 
-  if (!storeUrl || !showMessage) return null;
-
   const isIos = storeUrl === APP_STORE_URL;
 
+  // The slot is always rendered on mobile (server-side too) so revealing the
+  // message later never shifts the layout below it.
   return (
-    <p
-      role="status"
-      className="md:hidden mt-4 inline-flex items-center gap-2 font-serif italic text-forest/70 text-[15px]"
-    >
-      <span
-        aria-hidden="true"
-        className="relative inline-block h-3 w-3 overflow-hidden rounded-full border border-forest/40"
+    <div className="md:hidden mt-4 min-h-[22px]" aria-live="polite">
+      <p
+        role="status"
+        className={`inline-flex items-center gap-2 font-serif italic text-forest/70 text-[15px] transition-opacity duration-300 ${
+          storeUrl && showMessage ? "opacity-100" : "opacity-0"
+        }`}
       >
         <span
-          className="absolute inset-y-0 left-0 bg-forest/60 transition-[width] duration-300 ease-linear"
-          style={{ width: `${progress}%` }}
-        />
-      </span>
-      {isIos ? "Opening the App Store…" : "Opening Google Play…"}
-    </p>
+          aria-hidden="true"
+          className="relative inline-block h-3 w-3 overflow-hidden rounded-full border border-forest/40"
+        >
+          <span
+            className="absolute inset-y-0 left-0 bg-forest/60 transition-[width] duration-300 ease-linear"
+            style={{ width: `${progress}%` }}
+          />
+        </span>
+        {isIos ? "Opening the App Store…" : "Opening Google Play…"}
+      </p>
+    </div>
   );
 }

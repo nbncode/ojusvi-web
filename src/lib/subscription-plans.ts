@@ -4,3 +4,11 @@ export const SUBSCRIPTION_PLANS = {
 } as const;
 
 export type SubscriptionPlanKey = keyof typeof SUBSCRIPTION_PLANS;
+
+/** Access rights shared by the Annual (one-time) and ₹349/month plans. */
+export const FULL_ACCESS_INCLUDED = [
+  "Guided sessions everyday through out the week",
+  "A 52-week structured programme",
+  "Devotional content, fun games, medical reminder, much more",
+  "Available in Hindi, English, Bengali, Marathi, Telugu and Tamil",
+];

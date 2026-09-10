@@ -17,7 +17,7 @@ function HandIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="text-forest/80 hover:text-forest transition-colors"
+      className="inline-flex h-12 w-12 items-center justify-center text-forest/90 hover:text-forest transition-colors"
     >
       <svg
         width="26"
@@ -48,16 +48,16 @@ export function Footer() {
           </span>
         </p>
 
-        <nav className="mt-12 font-serif text-forest/85 text-[18px] leading-[1.9]">
-          <Link to="/privacy" className="hover:text-forest underline-offset-4 hover:underline">Privacy Policy</Link>
-          <span className="px-2">·</span>
-          <Link to="/terms" className="hover:text-forest underline-offset-4 hover:underline">Terms &amp; Conditions</Link>
-          <span className="px-2">·</span>
-          <Link to="/refund" className="hover:text-forest underline-offset-4 hover:underline">Cancellation &amp; Refund</Link>
-          <span className="px-2">·</span>
-          <Link to="/security" className="hover:text-forest underline-offset-4 hover:underline">Information Security</Link>
-          <span className="px-2">·</span>
-          <Link to="/account-deletion" className="hover:text-forest underline-offset-4 hover:underline">Account &amp; Data Deletion</Link>
+        <nav className="mt-12 font-serif text-forest text-[18px] leading-[1.9]">
+          <Link to="/privacy" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Privacy Policy</Link>
+          <span className="px-1">·</span>
+          <Link to="/terms" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Terms &amp; Conditions</Link>
+          <span className="px-1">·</span>
+          <Link to="/refund" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Cancellation &amp; Refund</Link>
+          <span className="px-1">·</span>
+          <Link to="/security" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Information Security</Link>
+          <span className="px-1">·</span>
+          <Link to="/account-deletion" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Account &amp; Data Deletion</Link>
         </nav>
 
         <div className="mt-10 flex justify-center gap-6">

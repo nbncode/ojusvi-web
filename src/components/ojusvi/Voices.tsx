@@ -195,7 +195,9 @@ export function Voices() {
                       src={c.src}
                       alt={c.alt}
                       loading="lazy"
+                      decoding="async"
                       className="block w-full h-auto object-cover"
+                      style={{ aspectRatio: "4 / 3" }}
                     />
                     {c.caption && (
                       <figcaption className="absolute bottom-2 left-0 right-0 text-center font-hand text-forest/85 text-[18px]">
@@ -244,7 +246,9 @@ export function Voices() {
                       src={c.src}
                       alt={c.alt}
                       loading="lazy"
+                      decoding="async"
                       className="block w-full h-auto object-cover"
+                      style={{ aspectRatio: "4 / 3" }}
                     />
                     {c.caption && (
                       <figcaption className="absolute bottom-2 left-0 right-0 text-center font-hand text-forest/85 text-[18px]">

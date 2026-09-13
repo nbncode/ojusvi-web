@@ -8,7 +8,7 @@ import { useServerFn } from "@tanstack/react-start";
 
 import { sendOtp, verifyOtp } from "@/lib/otp.functions";
 import { supabase } from "@/integrations/supabase/client";
-import { markLoggedIn, useCarriedLogin } from "@/hooks/useCarriedLogin";
+import { markLoggedIn, signOutCarriedLogin, useCarriedLogin } from "@/hooks/useCarriedLogin";
 
 export type CheckoutPlan = "annual" | "monthly" | "349" | "99";
 export type Audience = "self" | "parent";
@@ -93,6 +93,27 @@ export function useOtpCheckout(plan: CheckoutPlan) {
     setVerified(false);
     setOtp("");
   }
+
+  /** Full sign-out: clears the carried login and every captured detail. */
+  async function signOutCheckout() {
+    await signOutCarriedLogin();
+    setOtpSent(false);
+    setVerified(false);
+    setOtp("");
+    setOtpResult(null);
+    setError(null);
+    setFieldErrors({});
+    setResendIn(0);
+    setAudience("self");
+    setPayerName("");
+    setPhone("");
+    setPayerCc("+91");
+    setMemberName("");
+    setMemberPhone("");
+    setMemberCc("+91");
+    setEmail("");
+  }
+
 
   const requiredFilled = useMemo(() => {
     const base = payerName.trim().length >= 2 && isValidPhone(payerCc, phone);
@@ -245,6 +266,8 @@ export function useOtpCheckout(plan: CheckoutPlan) {
     error,
     setError,
     resetVerification,
+    signOutCheckout,
+
     requiredFilled,
     canPay,
     validate,

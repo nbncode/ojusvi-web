@@ -7,6 +7,10 @@ import { SUBSCRIPTION_PLANS } from "./subscription-plans";
 const inputSchema = z.object({
   plan: z.enum(["annual", "monthly"]),
   couponCode: z.string().trim().max(40).optional(),
+  // Set when this order is bought to replace an existing recurring
+  // subscription; the order webhook cancels that subscription once the
+  // payment is confirmed.
+  supersedesSubscriptionId: z.string().trim().max(80).optional(),
 });
 
 /**
@@ -118,6 +122,7 @@ export const createSubscriptionOrder = createServerFn({ method: "POST" })
         expected_amount: amount,
         coupon_code: couponCode,
         discount_applied: discountApplied,
+        supersedes_subscription_id: data.supersedesSubscriptionId?.trim() || null,
       });
       if (ordErr) {
         console.error(`[createSubscriptionOrder] razorpay_orders insert failed: ${ordErr.message}`, {

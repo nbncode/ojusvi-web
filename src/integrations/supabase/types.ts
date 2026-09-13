@@ -306,6 +306,33 @@ export type Database = {
         }
         Relationships: []
       }
+      plan_switch_failures: {
+        Row: {
+          action: string
+          created_at: string
+          error_message: string | null
+          id: string
+          razorpay_subscription_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          razorpay_subscription_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          razorpay_subscription_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       plans: {
         Row: {
           amount_paise: number
@@ -402,6 +429,7 @@ export type Database = {
           expected_amount: number
           order_id: string
           plan: string | null
+          supersedes_subscription_id: string | null
           user_id: string | null
         }
         Insert: {
@@ -412,6 +440,7 @@ export type Database = {
           expected_amount: number
           order_id: string
           plan?: string | null
+          supersedes_subscription_id?: string | null
           user_id?: string | null
         }
         Update: {
@@ -422,6 +451,7 @@ export type Database = {
           expected_amount?: number
           order_id?: string
           plan?: string | null
+          supersedes_subscription_id?: string | null
           user_id?: string | null
         }
         Relationships: []
@@ -471,6 +501,124 @@ export type Database = {
         }
         Relationships: []
       }
+      watch_attendance: {
+        Row: {
+          id: string
+          joined_at: string
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          joined_at?: string
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          joined_at?: string
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "watch_attendance_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "watch_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      watch_failures: {
+        Row: {
+          flagged_at: string
+          id: string
+          session_id: string
+        }
+        Insert: {
+          flagged_at?: string
+          id?: string
+          session_id: string
+        }
+        Update: {
+          flagged_at?: string
+          id?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "watch_failures_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "watch_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      watch_popups: {
+        Row: {
+          active_from: string | null
+          active_to: string | null
+          body: string | null
+          created_at: string
+          id: string
+          media_url: string | null
+          title: string | null
+        }
+        Insert: {
+          active_from?: string | null
+          active_to?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          media_url?: string | null
+          title?: string | null
+        }
+        Update: {
+          active_from?: string | null
+          active_to?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          media_url?: string | null
+          title?: string | null
+        }
+        Relationships: []
+      }
+      watch_sessions: {
+        Row: {
+          alerted_at: string | null
+          bunny_video_id: string
+          created_at: string
+          duration_seconds: number | null
+          id: string
+          next_class_focus: string | null
+          scheduled_start: string
+          technical_difficulty: boolean
+        }
+        Insert: {
+          alerted_at?: string | null
+          bunny_video_id: string
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          next_class_focus?: string | null
+          scheduled_start: string
+          technical_difficulty?: boolean
+        }
+        Update: {
+          alerted_at?: string | null
+          bunny_video_id?: string
+          created_at?: string
+          duration_seconds?: number | null
+          id?: string
+          next_class_focus?: string | null
+          scheduled_start?: string
+          technical_difficulty?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       user_membership_status: {
@@ -508,6 +656,36 @@ export type Database = {
         Returns: undefined
       }
       normalize_phone: { Args: { p: string }; Returns: string }
+      watch_next_session: {
+        Args: never
+        Returns: {
+          id: string
+          next_class_focus: string
+          scheduled_start: string
+        }[]
+      }
+      watch_resolve_session: {
+        Args: never
+        Returns: {
+          bunny_video_id: string
+          duration_seconds: number
+          elapsed_seconds: number
+          id: string
+          is_live: boolean
+          next_class_focus: string
+          scheduled_start: string
+          technical_difficulty: boolean
+        }[]
+      }
+      watch_upcoming_sessions: {
+        Args: never
+        Returns: {
+          duration_seconds: number
+          id: string
+          scheduled_start: string
+          technical_difficulty: boolean
+        }[]
+      }
     }
     Enums: {
       entitlement_source: "self" | "family"

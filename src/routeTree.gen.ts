@@ -15,6 +15,7 @@ import { Route as BecomeAnInstructorRouteImport } from './routes/become-an-instr
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as DownloadAppRouteImport } from './routes/download-app'
 import { Route as EarningcalcRouteImport } from './routes/earningcalc'
+import { Route as ManageRouteImport } from './routes/manage'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as Offer99RouteImport } from './routes/offer99'
 import { Route as PayRouteImport } from './routes/pay'
@@ -27,13 +28,19 @@ import { Route as SubscribeRouteImport } from './routes/subscribe'
 import { Route as SubscribedRouteImport } from './routes/subscribed'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as WatchRouteImport } from './routes/watch'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as ApiCreateSubscriptionRouteImport } from './routes/api/create-subscription'
+import { Route as ApiSwitchPlanRouteImport } from './routes/api/switch-plan'
 import { Route as ApiVerifySubscriptionRouteImport } from './routes/api/verify-subscription'
+import { Route as ApiWatchAccessRouteImport } from './routes/api/watch-access'
+import { Route as ApiWatchScheduleRouteImport } from './routes/api/watch-schedule'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
+import { Route as ApiPublicWatchUpcomingRouteImport } from './routes/api/public/watch-upcoming'
 import { Route as ApiPublicCronAlertMismatchesRouteImport } from './routes/api/public/cron/alert-mismatches'
+import { Route as ApiPublicCronCheckClassVideoRouteImport } from './routes/api/public/cron/check-class-video'
 import { Route as ApiPublicHooksRazorpayRouteImport } from './routes/api/public/hooks/razorpay'
 import { Route as ApiPublicHooksRazorpaySubscriptionRouteImport } from './routes/api/public/hooks/razorpay-subscription'
 import { Route as ApiPublicHooksSyncInstructorApplicationRouteImport } from './routes/api/public/hooks/sync-instructor-application'
@@ -66,6 +73,11 @@ const DownloadAppRoute = DownloadAppRouteImport.update({
 const EarningcalcRoute = EarningcalcRouteImport.update({
   id: '/earningcalc',
   path: '/earningcalc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManageRoute = ManageRouteImport.update({
+  id: '/manage',
+  path: '/manage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const McpRoute = McpRouteImport.update({
@@ -128,6 +140,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WatchRoute = WatchRouteImport.update({
+  id: '/watch',
+  path: '/watch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char91DotmcpChar93ListToolsRoute =
   Char91DotmcpChar93ListToolsRouteImport.update({
     id: '/.mcp/list-tools',
@@ -145,9 +162,24 @@ const ApiCreateSubscriptionRoute = ApiCreateSubscriptionRouteImport.update({
   path: '/api/create-subscription',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiSwitchPlanRoute = ApiSwitchPlanRouteImport.update({
+  id: '/api/switch-plan',
+  path: '/api/switch-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiVerifySubscriptionRoute = ApiVerifySubscriptionRouteImport.update({
   id: '/api/verify-subscription',
   path: '/api/verify-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWatchAccessRoute = ApiWatchAccessRouteImport.update({
+  id: '/api/watch-access',
+  path: '/api/watch-access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWatchScheduleRoute = ApiWatchScheduleRouteImport.update({
+  id: '/api/watch-schedule',
+  path: '/api/watch-schedule',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
@@ -161,10 +193,21 @@ const Char91DotmcpChar93InvokeToolToolRoute =
     path: '/.mcp/invoke-tool/$tool',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicWatchUpcomingRoute = ApiPublicWatchUpcomingRouteImport.update({
+  id: '/api/public/watch-upcoming',
+  path: '/api/public/watch-upcoming',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicCronAlertMismatchesRoute =
   ApiPublicCronAlertMismatchesRouteImport.update({
     id: '/api/public/cron/alert-mismatches',
     path: '/api/public/cron/alert-mismatches',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicCronCheckClassVideoRoute =
+  ApiPublicCronCheckClassVideoRouteImport.update({
+    id: '/api/public/cron/check-class-video',
+    path: '/api/public/cron/check-class-video',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiPublicHooksRazorpayRoute = ApiPublicHooksRazorpayRouteImport.update({
@@ -192,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
@@ -204,13 +248,19 @@ export interface FileRoutesByFullPath {
   '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/watch': typeof WatchRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/switch-plan': typeof ApiSwitchPlanRoute
   '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
+  '/api/watch-access': typeof ApiWatchAccessRoute
+  '/api/watch-schedule': typeof ApiWatchScheduleRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/public/watch-upcoming': typeof ApiPublicWatchUpcomingRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
+  '/api/public/cron/check-class-video': typeof ApiPublicCronCheckClassVideoRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
   '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
@@ -222,6 +272,7 @@ export interface FileRoutesByTo {
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
@@ -234,13 +285,19 @@ export interface FileRoutesByTo {
   '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/watch': typeof WatchRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/switch-plan': typeof ApiSwitchPlanRoute
   '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
+  '/api/watch-access': typeof ApiWatchAccessRoute
+  '/api/watch-schedule': typeof ApiWatchScheduleRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/public/watch-upcoming': typeof ApiPublicWatchUpcomingRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
+  '/api/public/cron/check-class-video': typeof ApiPublicCronCheckClassVideoRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
   '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
@@ -253,6 +310,7 @@ export interface FileRoutesById {
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
   '/pay': typeof PayRoute
@@ -265,13 +323,19 @@ export interface FileRoutesById {
   '/subscribed': typeof SubscribedRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
+  '/watch': typeof WatchRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
+  '/api/switch-plan': typeof ApiSwitchPlanRoute
   '/api/verify-subscription': typeof ApiVerifySubscriptionRoute
+  '/api/watch-access': typeof ApiWatchAccessRoute
+  '/api/watch-schedule': typeof ApiWatchScheduleRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/public/watch-upcoming': typeof ApiPublicWatchUpcomingRoute
   '/api/public/cron/alert-mismatches': typeof ApiPublicCronAlertMismatchesRoute
+  '/api/public/cron/check-class-video': typeof ApiPublicCronCheckClassVideoRoute
   '/api/public/hooks/razorpay': typeof ApiPublicHooksRazorpayRoute
   '/api/public/hooks/razorpay-subscription': typeof ApiPublicHooksRazorpaySubscriptionRoute
   '/api/public/hooks/sync-instructor-application': typeof ApiPublicHooksSyncInstructorApplicationRoute
@@ -285,6 +349,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/manage'
     | '/mcp'
     | '/offer99'
     | '/pay'
@@ -297,13 +362,19 @@ export interface FileRouteTypes {
     | '/subscribed'
     | '/terms'
     | '/thank-you'
+    | '/watch'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
+    | '/api/switch-plan'
     | '/api/verify-subscription'
+    | '/api/watch-access'
+    | '/api/watch-schedule'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/public/watch-upcoming'
     | '/api/public/cron/alert-mismatches'
+    | '/api/public/cron/check-class-video'
     | '/api/public/hooks/razorpay'
     | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
@@ -315,6 +386,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/manage'
     | '/mcp'
     | '/offer99'
     | '/pay'
@@ -327,13 +399,19 @@ export interface FileRouteTypes {
     | '/subscribed'
     | '/terms'
     | '/thank-you'
+    | '/watch'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
+    | '/api/switch-plan'
     | '/api/verify-subscription'
+    | '/api/watch-access'
+    | '/api/watch-schedule'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/public/watch-upcoming'
     | '/api/public/cron/alert-mismatches'
+    | '/api/public/cron/check-class-video'
     | '/api/public/hooks/razorpay'
     | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
@@ -345,6 +423,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/manage'
     | '/mcp'
     | '/offer99'
     | '/pay'
@@ -357,13 +436,19 @@ export interface FileRouteTypes {
     | '/subscribed'
     | '/terms'
     | '/thank-you'
+    | '/watch'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
+    | '/api/switch-plan'
     | '/api/verify-subscription'
+    | '/api/watch-access'
+    | '/api/watch-schedule'
     | '/.lovable/oauth/consent'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/public/watch-upcoming'
     | '/api/public/cron/alert-mismatches'
+    | '/api/public/cron/check-class-video'
     | '/api/public/hooks/razorpay'
     | '/api/public/hooks/razorpay-subscription'
     | '/api/public/hooks/sync-instructor-application'
@@ -376,6 +461,7 @@ export interface RootRouteChildren {
   DownloadRoute: typeof DownloadRoute
   DownloadAppRoute: typeof DownloadAppRoute
   EarningcalcRoute: typeof EarningcalcRoute
+  ManageRoute: typeof ManageRoute
   McpRoute: typeof McpRoute
   Offer99Route: typeof Offer99Route
   PayRoute: typeof PayRoute
@@ -388,13 +474,19 @@ export interface RootRouteChildren {
   SubscribedRoute: typeof SubscribedRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
+  WatchRoute: typeof WatchRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   ApiCreateSubscriptionRoute: typeof ApiCreateSubscriptionRoute
+  ApiSwitchPlanRoute: typeof ApiSwitchPlanRoute
   ApiVerifySubscriptionRoute: typeof ApiVerifySubscriptionRoute
+  ApiWatchAccessRoute: typeof ApiWatchAccessRoute
+  ApiWatchScheduleRoute: typeof ApiWatchScheduleRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
+  ApiPublicWatchUpcomingRoute: typeof ApiPublicWatchUpcomingRoute
   ApiPublicCronAlertMismatchesRoute: typeof ApiPublicCronAlertMismatchesRoute
+  ApiPublicCronCheckClassVideoRoute: typeof ApiPublicCronCheckClassVideoRoute
   ApiPublicHooksRazorpayRoute: typeof ApiPublicHooksRazorpayRoute
   ApiPublicHooksRazorpaySubscriptionRoute: typeof ApiPublicHooksRazorpaySubscriptionRoute
   ApiPublicHooksSyncInstructorApplicationRoute: typeof ApiPublicHooksSyncInstructorApplicationRoute
@@ -442,6 +534,13 @@ declare module '@tanstack/react-router' {
       path: '/earningcalc'
       fullPath: '/earningcalc'
       preLoaderRoute: typeof EarningcalcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manage': {
+      id: '/manage'
+      path: '/manage'
+      fullPath: '/manage'
+      preLoaderRoute: typeof ManageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mcp': {
@@ -528,6 +627,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/watch': {
+      id: '/watch'
+      path: '/watch'
+      fullPath: '/watch'
+      preLoaderRoute: typeof WatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/.mcp/list-tools': {
       id: '/.mcp/list-tools'
       path: '/.mcp/list-tools'
@@ -549,11 +655,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCreateSubscriptionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/switch-plan': {
+      id: '/api/switch-plan'
+      path: '/api/switch-plan'
+      fullPath: '/api/switch-plan'
+      preLoaderRoute: typeof ApiSwitchPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/verify-subscription': {
       id: '/api/verify-subscription'
       path: '/api/verify-subscription'
       fullPath: '/api/verify-subscription'
       preLoaderRoute: typeof ApiVerifySubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/watch-access': {
+      id: '/api/watch-access'
+      path: '/api/watch-access'
+      fullPath: '/api/watch-access'
+      preLoaderRoute: typeof ApiWatchAccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/watch-schedule': {
+      id: '/api/watch-schedule'
+      path: '/api/watch-schedule'
+      fullPath: '/api/watch-schedule'
+      preLoaderRoute: typeof ApiWatchScheduleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.lovable/oauth/consent': {
@@ -570,11 +697,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/watch-upcoming': {
+      id: '/api/public/watch-upcoming'
+      path: '/api/public/watch-upcoming'
+      fullPath: '/api/public/watch-upcoming'
+      preLoaderRoute: typeof ApiPublicWatchUpcomingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/cron/alert-mismatches': {
       id: '/api/public/cron/alert-mismatches'
       path: '/api/public/cron/alert-mismatches'
       fullPath: '/api/public/cron/alert-mismatches'
       preLoaderRoute: typeof ApiPublicCronAlertMismatchesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/cron/check-class-video': {
+      id: '/api/public/cron/check-class-video'
+      path: '/api/public/cron/check-class-video'
+      fullPath: '/api/public/cron/check-class-video'
+      preLoaderRoute: typeof ApiPublicCronCheckClassVideoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/hooks/razorpay': {
@@ -608,6 +749,7 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadRoute: DownloadRoute,
   DownloadAppRoute: DownloadAppRoute,
   EarningcalcRoute: EarningcalcRoute,
+  ManageRoute: ManageRoute,
   McpRoute: McpRoute,
   Offer99Route: Offer99Route,
   PayRoute: PayRoute,
@@ -620,14 +762,20 @@ const rootRouteChildren: RootRouteChildren = {
   SubscribedRoute: SubscribedRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
+  WatchRoute: WatchRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
   ApiCreateSubscriptionRoute: ApiCreateSubscriptionRoute,
+  ApiSwitchPlanRoute: ApiSwitchPlanRoute,
   ApiVerifySubscriptionRoute: ApiVerifySubscriptionRoute,
+  ApiWatchAccessRoute: ApiWatchAccessRoute,
+  ApiWatchScheduleRoute: ApiWatchScheduleRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
+  ApiPublicWatchUpcomingRoute: ApiPublicWatchUpcomingRoute,
   ApiPublicCronAlertMismatchesRoute: ApiPublicCronAlertMismatchesRoute,
+  ApiPublicCronCheckClassVideoRoute: ApiPublicCronCheckClassVideoRoute,
   ApiPublicHooksRazorpayRoute: ApiPublicHooksRazorpayRoute,
   ApiPublicHooksRazorpaySubscriptionRoute:
     ApiPublicHooksRazorpaySubscriptionRoute,

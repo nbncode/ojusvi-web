@@ -1,0 +1,2 @@
+ALTER TABLE public.watch_sessions ADD COLUMN IF NOT EXISTS alerted_at timestamp with time zone;
+CREATE INDEX IF NOT EXISTS watch_sessions_alerted_at_idx ON public.watch_sessions (scheduled_start) WHERE alerted_at IS NULL;

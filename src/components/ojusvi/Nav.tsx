@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
+import { useWatchLiveIndicator } from "@/hooks/useWatchLiveIndicator";
 const logoRound = logoAsset;
 
 const links = [
@@ -13,6 +14,7 @@ const links = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { isLive } = useWatchLiveIndicator();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -45,6 +47,21 @@ export function Nav() {
               {l.label}
             </a>
           ))}
+          <a
+            href="/watch"
+            className="inline-flex items-center gap-2 hover:text-forest transition-colors"
+          >
+            {isLive ? "Watch · Live Now" : "Watch"}
+            {isLive ? (
+              <span
+                aria-hidden="true"
+                className="relative flex h-2.5 w-2.5 items-center justify-center"
+              >
+                <span className="absolute inline-flex h-2.5 w-2.5 animate-ping rounded-full bg-red-500/70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-600" />
+              </span>
+            ) : null}
+          </a>
         </nav>
         <a
           href="/download-app"

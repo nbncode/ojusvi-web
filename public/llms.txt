@@ -1,13 +1,29 @@
 # Ojusvi
 
-> Ojusvi is a heartfelt wellness platform offering yoga, meditation, and holistic practices across physical, mental, and spiritual pillars.
+> Ojusvi is a heartfelt wellness platform for Indian adults 55+ and their families — daily live yoga, meditation, panchang, satsang, gentle games and live Tambola, plus Samvit medicine and health-record tracking, in eight Indian languages.
 
 ## Pages
 
-- [Home](/): Overview of Ojusvi's wellness philosophy and offerings.
+- [Home](/): Overview of Ojusvi's wellness philosophy, daily sessions, languages and pricing.
+- [Watch Live](/watch): Live and upcoming yoga classes, with access details for members.
+- [Download the App](/download-app): Get Ojusvi on iOS and Android.
+- [Annual Membership](/pay): Annual membership — ₹2,988 billed once for 12 months (₹249/month).
 - [Become an Instructor](/become-an-instructor): Join Ojusvi as a wellness instructor.
+- [Instructor Earnings Calculator](/earningcalc): Estimate tentative monthly earnings as an instructor.
 - [Privacy Policy](/privacy): How we handle your personal data.
 - [Terms of Service](/terms): Terms governing the use of Ojusvi.
 - [Refund Policy](/refund): Refund terms for bookings and purchases.
 - [Security](/security): Our security practices and commitments.
 - [Account Deletion](/account-deletion): How to request account deletion.
+
+## Plans
+
+- Lite: ₹99/month, recurring — mobile app only.
+- Monthly: ₹349/month, recurring — mobile app and laptop access.
+- Annual: ₹2,988 billed once for 12 months (₹249/month) — mobile app and laptop access.
+- Every new user gets the first 30 days free, no card needed.
+
+## Contact
+
+- Email: hello@ojusvi.app
+- WhatsApp: +91 99589 05337

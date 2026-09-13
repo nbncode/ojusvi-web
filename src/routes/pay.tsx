@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Check, Lock, ShieldCheck, CalendarX2, GraduationCap, Headphones, Loader2, X } from "lucide-react";
@@ -7,6 +7,8 @@ import { createSubscriptionOrder } from "@/lib/subscription.functions";
 import { validateCoupon } from "@/lib/coupons.functions";
 import { SharePaymentButtons } from "@/components/ojusvi/SharePaymentButtons";
 import { useOtpCheckout, toE164, loadRazorpay } from "@/hooks/useOtpCheckout";
+import { AccountBadge } from "@/components/ojusvi/AccountBadge";
+
 import { FULL_ACCESS_INCLUDED } from "@/lib/subscription-plans";
 
 import logoAsset from "@/assets/ojusvi-logo-round-256.webp";
@@ -80,6 +82,11 @@ function formatInr(paise: number): string {
 function PayPage() {
   const navigate = useNavigate();
   const createOrderFn = useServerFn(createSubscriptionOrder);
+  // Optional ?supersedes=<razorpay_subscription_id> — the recurring plan this
+  // annual purchase replaces. The order webhook cancels it once paid.
+  const search = useSearch({ strict: false }) as { supersedes?: string };
+  const supersedesSubscriptionId =
+    typeof search.supersedes === "string" && search.supersedes.trim() ? search.supersedes.trim() : undefined;
   const validateCouponFn = useServerFn(validateCoupon);
 
   const plan: PlanKey = "annual";
@@ -115,6 +122,8 @@ function PayPage() {
     error,
     setError,
     resetVerification,
+    signOutCheckout,
+
     requiredFilled,
     canPay,
     handleSendOtp,
@@ -196,7 +205,11 @@ function PayPage() {
       let order;
       try {
         order = await createOrderFn({
-          data: { plan, ...(appliedCoupon ? { couponCode: appliedCoupon.code } : {}) },
+          data: {
+            plan,
+            ...(appliedCoupon ? { couponCode: appliedCoupon.code } : {}),
+            ...(supersedesSubscriptionId ? { supersedesSubscriptionId } : {}),
+          },
         });
       } catch (e) {
         const msg = e instanceof Error ? e.message : "";
@@ -288,6 +301,25 @@ function PayPage() {
         <p className="mt-2 max-w-2xl text-ink/70">
           A few details, one secure payment, and your Ojusvi days begin.
         </p>
+
+        {verified && !otpSent && (
+          <>
+            <AccountBadge
+              cc={payerCc}
+              phone={phone}
+              label="Paying as"
+              onSignOut={() => void signOutCheckout()}
+              className="mt-3"
+            />
+            <Link
+              to="/manage"
+              className="mt-1 inline-block text-[15px] text-forest underline underline-offset-4 hover:text-forest/80"
+            >
+              Manage your membership
+            </Link>
+          </>
+        )}
+
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start">
           {/* LEFT — order summary */}

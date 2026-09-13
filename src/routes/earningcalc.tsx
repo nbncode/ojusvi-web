@@ -16,8 +16,13 @@ export const Route = createFileRoute("/earningcalc")({
         content:
           "Estimate your tentative monthly take-home as an Ojusvi instructor across revenue-share models.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ojusvi.app/earningcalc" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://ojusvi.app/earningcalc" }],
   }),
+
   component: EarningsCalcPage,
 });
 

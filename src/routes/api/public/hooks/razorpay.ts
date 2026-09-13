@@ -182,6 +182,30 @@ export const Route = createFileRoute("/api/public/hooks/razorpay")({
           }
         }
 
+        // Plan switch to Annual: the recurring subscription this order replaces
+        // is cancelled immediately, but only now that the payment is confirmed.
+        try {
+          const { data: orderRow, error: supErr } = await supabaseAdmin
+            .from("razorpay_orders")
+            .select("supersedes_subscription_id")
+            .eq("order_id", orderId)
+            .maybeSingle();
+          if (supErr) {
+            console.error(`[razorpay-webhook] supersedes lookup failed: ${supErr.message}`, { orderId });
+          } else if (orderRow?.supersedes_subscription_id) {
+            const { cancelSubscription } = await import("@/lib/plan-switch.server");
+            const result = await cancelSubscription(orderRow.supersedes_subscription_id, false, noteUserId);
+            if (!result.success) {
+              console.error(
+                `[razorpay-webhook] superseded subscription cancel failed: ${result.errorMessage}`,
+                { orderId, subscriptionId: orderRow.supersedes_subscription_id },
+              );
+            }
+          }
+        } catch (e) {
+          console.error(`[razorpay-webhook] supersede handling threw: ${String(e)}`, { orderId });
+        }
+
         // If the entitlement went to someone other than the payer (a gifted
         // "parent" plan), make sure that person has a basic profile row too —
         // so their own future login on their own phone isn't missing info.

@@ -5,11 +5,13 @@
  * /api/verify-subscription, which authenticate via an explicit Authorization
  * Bearer header (not cookie middleware like the order-flow server function).
  */
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { Check, Loader2, Lock, ShieldCheck, CalendarX2, GraduationCap, Headphones, X } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import { SharePaymentButtons } from "@/components/ojusvi/SharePaymentButtons";
+import { AccountBadge } from "@/components/ojusvi/AccountBadge";
+
 import { loadRazorpay, toE164, useOtpCheckout } from "@/hooks/useOtpCheckout";
 import { FULL_ACCESS_INCLUDED } from "@/lib/subscription-plans";
 
@@ -35,7 +37,7 @@ declare global {
 
 
 const INCLUDED_99 = [
-  "Live yoga sessions",
+  "Access live yoga sessions on mobile",
   "Tambola",
   "Games",
   "Panchang",
@@ -77,6 +79,21 @@ export function SubscriptionCheckout({ plan }: { plan: SubscriptionPlanParam }) 
   const copy = PLAN_COPY[plan];
   const failedFrom = plan === "349" ? "/subscribe" : "/offer99";
 
+  // Optional ?startAt=<unix seconds> — set when this plan should only begin
+  // once an existing annual period ends. The server re-validates it.
+  const search = useSearch({ strict: false }) as { startAt?: string | number };
+  const startAtRaw = Number(search.startAt);
+  const startAt =
+    Number.isFinite(startAtRaw) && startAtRaw > Math.floor(Date.now() / 1000) ? startAtRaw : undefined;
+  const startAtLabel = startAt
+    ? new Date(startAt * 1000).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "Asia/Kolkata",
+      })
+    : null;
+
 
   const {
     audience,
@@ -111,6 +128,8 @@ export function SubscriptionCheckout({ plan }: { plan: SubscriptionPlanParam }) 
     error,
     setError,
     resetVerification,
+    signOutCheckout,
+
     requiredFilled,
     canPay,
     handleSendOtp,
@@ -152,7 +171,7 @@ export function SubscriptionCheckout({ plan }: { plan: SubscriptionPlanParam }) 
       const createRes = await fetch("/api/create-subscription", {
         method: "POST",
         headers: authHeaders,
-        body: JSON.stringify({ plan }),
+        body: JSON.stringify({ plan, ...(startAt ? { startAt } : {}) }),
       });
       if (!createRes.ok) {
         const body = (await createRes.json().catch(() => ({}))) as { error?: string };
@@ -215,6 +234,23 @@ rzp.on("payment.failed", () => {
 
   return (
     <div className="space-y-6">
+      {verified && !otpSent && (
+        <div>
+          <AccountBadge
+            cc={payerCc}
+            phone={phone}
+            label="Paying as"
+            onSignOut={() => void signOutCheckout()}
+          />
+          <Link
+            to="/manage"
+            className="mt-1 inline-block text-[15px] text-forest underline underline-offset-4 hover:text-forest/80"
+          >
+            Manage your membership
+          </Link>
+        </div>
+      )}
+
       <section className="rounded-3xl border border-forest/12 bg-parchment-deep/40 p-6">
         <div className="space-y-5">
           <fieldset>
@@ -479,7 +515,9 @@ rzp.on("payment.failed", () => {
       <section className="rounded-3xl border border-forest/12 bg-parchment-deep/40 p-6">
         <h2 className="font-serif italic text-forest text-[26px]">Payment</h2>
         <p className="mt-2 text-ink/70">
-          Secure recurring payment via Razorpay — UPI, card or net banking. Cancel anytime.
+          {startAtLabel
+            ? `Your ${plan === "99" ? "Lite" : "Monthly"} membership starts on ${startAtLabel} — nothing is charged until then, and your current membership continues until that date. You're only approving the monthly payment now.`
+            : "Secure recurring payment via Razorpay — UPI, card or net banking. Cancel anytime."}
         </p>
 
         {error && (

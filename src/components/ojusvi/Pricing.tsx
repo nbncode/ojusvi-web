@@ -242,6 +242,7 @@ export function Pricing() {
                     <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                       Limited access to some paid events
                     </p>
+                    <p className="mt-3 font-serif italic text-forest/70 text-[14px]">Mobile app only</p>
                     <p className="mt-4 font-serif text-forest text-[56px] leading-none">
                       ₹99<span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">/month</span>
                     </p>
@@ -267,6 +268,7 @@ export function Pricing() {
                     <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                       First 30 days free
                     </p>
+                    <p className="mt-3 font-serif italic text-forest/70 text-[14px]">Mobile app + laptop access</p>
                     <p className="mt-4 font-serif text-forest text-[64px] leading-none">
                       ₹249<span className="ml-1 font-sans text-[15px] tracking-wide text-forest/80 align-middle">/month</span>
                     </p>
@@ -295,6 +297,7 @@ export function Pricing() {
                     <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                       First 30 days free
                     </p>
+                    <p className="mt-3 font-serif italic text-forest/70 text-[14px]">Mobile app + laptop access</p>
                     <p className="mt-4 font-serif text-forest text-[56px] leading-none">
                       ₹349<span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">/month</span>
                     </p>
@@ -322,6 +325,7 @@ export function Pricing() {
                 <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                   Limited access to some paid events
                 </p>
+                <p className="mt-3 font-serif italic text-forest/70 text-[15px]">Mobile app only</p>
                 <p className="mt-4 font-serif text-forest text-[56px] md:text-[64px] leading-none">
                   ₹99
                   <span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">
@@ -361,6 +365,7 @@ export function Pricing() {
                 <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                   First 30 days free
                 </p>
+                <p className="mt-3 font-serif italic text-forest/70 text-[15px]">Mobile app + laptop access</p>
                 <p className="mt-4 font-serif text-forest text-[72px] md:text-[88px] leading-none">
                   ₹249
                   <span className="ml-1 font-sans text-[15px] tracking-wide text-forest/80 align-middle">
@@ -400,6 +405,7 @@ export function Pricing() {
                 <p className="mt-3 inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-amber text-[11px] font-medium tracking-[0.16em] uppercase">
                   First 30 days free
                 </p>
+                <p className="mt-3 font-serif italic text-forest/70 text-[15px]">Mobile app + laptop access</p>
                 <p className="mt-4 font-serif text-forest text-[56px] md:text-[64px] leading-none">
                   ₹349
                   <span className="ml-1 font-sans text-[14px] tracking-wide text-forest/80 align-middle">

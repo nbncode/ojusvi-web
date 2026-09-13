@@ -1,13 +1,13 @@
 /**
- * Carries an OTP login across /pay, /subscribe and /offer99 within the same
- * tab for 30 minutes from the original verification. App-level session-carry
- * logic layered on top of the existing Supabase client.
+ * Carries an OTP login across /pay, /subscribe and /offer99. The login is
+ * stored in localStorage so it survives tab closes, and stays valid until the
+ * user explicitly signs out.
  */
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 const STORAGE_KEY = "ojusvi_login_at";
-const WINDOW_MS = 30 * 60 * 1000;
+
 
 export type CarriedProfile = {
   audience: "self" | "parent";
@@ -40,9 +40,27 @@ function splitE164(value: string | null | undefined): { cc: string; number: stri
 
 export function markLoggedIn() {
   try {
-    sessionStorage.setItem(STORAGE_KEY, String(Date.now()));
+    localStorage.setItem(STORAGE_KEY, String(Date.now()));
   } catch {
-    /* sessionStorage unavailable */
+    /* localStorage unavailable */
+  }
+}
+
+export function clearCarriedLogin() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Full sign-out: drops the Supabase session and the carried-login marker. */
+export async function signOutCarriedLogin() {
+  clearCarriedLogin();
+  try {
+    await supabase.auth.signOut();
+  } catch {
+    /* ignore */
   }
 }
 
@@ -53,13 +71,7 @@ export function useCarriedLogin(): CarriedLogin {
     let cancelled = false;
 
     async function clearAndSignOut(removeKey: boolean) {
-      if (removeKey) {
-        try {
-          sessionStorage.removeItem(STORAGE_KEY);
-        } catch {
-          /* ignore */
-        }
-      }
+      if (removeKey) clearCarriedLogin();
       try {
         await supabase.auth.signOut();
       } catch {
@@ -71,12 +83,12 @@ export function useCarriedLogin(): CarriedLogin {
     (async () => {
       let stored: string | null = null;
       try {
-        stored = sessionStorage.getItem(STORAGE_KEY);
+        stored = localStorage.getItem(STORAGE_KEY);
       } catch {
         stored = null;
       }
 
-      // No login in this tab: clear any leftover session from a closed tab.
+      // No carried login: clear any leftover Supabase session.
       if (!stored) {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
@@ -87,11 +99,7 @@ export function useCarriedLogin(): CarriedLogin {
         return;
       }
 
-      const at = Number(stored);
-      if (!Number.isFinite(at) || Date.now() - at > WINDOW_MS) {
-        await clearAndSignOut(true);
-        return;
-      }
+
 
       const { data } = await supabase.auth.getSession();
       const userId = data.session?.user?.id;

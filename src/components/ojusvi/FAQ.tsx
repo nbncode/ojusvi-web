@@ -123,7 +123,7 @@ items: pick(
   },
 ];
 
-function renderAnswer(a: string) {
+function renderAnswer(a: string, pricingHref: string) {
   return a.split(/(__EMAIL__|__WHATSAPP__|__PRICING__)/).map((part, idx) => {
     if (part === "__EMAIL__") {
       return (
@@ -153,7 +153,7 @@ function renderAnswer(a: string) {
       return (
         <a
           key={idx}
-          href="/#pricing"
+          href={pricingHref}
           className="text-forest underline underline-offset-4 decoration-forest/40 hover:decoration-forest"
         >
           see plans
@@ -169,11 +169,13 @@ function QuestionList({
   openKey,
   setOpenKey,
   groupKey,
+  pricingHref = "/#pricing",
 }: {
   items: FAQ[];
   openKey: string | null;
   setOpenKey: (k: string | null) => void;
   groupKey: string;
+  pricingHref?: string;
 }) {
   return (
     <ul className="divide-y divide-forest/15 border-y border-forest/15">
@@ -204,7 +206,7 @@ function QuestionList({
             >
               <div className="overflow-hidden">
                 <p className="max-w-[640px] font-serif italic text-ink/80 text-[17px] md:text-[18px] leading-[1.7]">
-                  {renderAnswer(f.a)}
+                  {renderAnswer(f.a, pricingHref)}
                 </p>
               </div>
             </div>
@@ -215,9 +217,23 @@ function QuestionList({
   );
 }
 
-export function FAQ() {
+/**
+ * `pricingHref` lets a page keep the "see plans" link on its own pricing
+ * section (e.g. /watch renders Pricing inline, so "#pricing" stays put).
+ * `questions` renders a flat, trimmed subset instead of all groups.
+ */
+export function FAQ({
+  pricingHref = "/#pricing",
+  questions,
+}: {
+  pricingHref?: string;
+  questions?: string[];
+} = {}) {
   const [openGroup, setOpenGroup] = useState<string>(groups[0].title);
   const [openKey, setOpenKey] = useState<string | null>(null);
+
+  const trimmed = questions ? pick(...questions) : null;
+
   return (
     <section id="faq" className="relative bg-parchment py-12 md:py-16">
       <div className="mx-auto max-w-[760px] px-6">
@@ -230,7 +246,18 @@ export function FAQ() {
           </h2>
         </Reveal>
 
-        {/* Collapsible groups (all viewports) */}
+        {trimmed ? (
+          <div className="mt-10">
+            <QuestionList
+              items={trimmed}
+              openKey={openKey}
+              setOpenKey={setOpenKey}
+              groupKey="trimmed"
+              pricingHref={pricingHref}
+            />
+          </div>
+        ) : (
+        /* Collapsible groups (all viewports) */
         <div className="mt-10 space-y-3">
           {groups.map((g) => {
             const isOpen = openGroup === g.title;
@@ -268,6 +295,7 @@ export function FAQ() {
                       openKey={openKey}
                       setOpenKey={setOpenKey}
                       groupKey={g.title}
+                      pricingHref={pricingHref}
                     />
                   </div>
                 </div>
@@ -275,6 +303,7 @@ export function FAQ() {
             );
           })}
         </div>
+        )}
       </div>
     </section>
   );

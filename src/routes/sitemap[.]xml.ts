@@ -7,29 +7,35 @@ interface SitemapEntry {
   path: string;
   changefreq?: "weekly" | "monthly" | "yearly";
   priority?: string;
+  lastmod?: string;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        // lastmod values are the dates each page's content last changed in the
+        // repository — page-specific, never generation time.
         const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/download", changefreq: "monthly", priority: "0.8" },
-          { path: "/download-app", changefreq: "monthly", priority: "0.8" },
-          { path: "/pay", changefreq: "monthly", priority: "0.8" },
-          { path: "/become-an-instructor", changefreq: "monthly", priority: "0.8" },
-          { path: "/privacy", changefreq: "yearly", priority: "0.3" },
-          { path: "/terms", changefreq: "yearly", priority: "0.3" },
-          { path: "/refund", changefreq: "yearly", priority: "0.3" },
-          { path: "/security", changefreq: "yearly", priority: "0.3" },
-          { path: "/account-deletion", changefreq: "yearly", priority: "0.3" },
+          { path: "/", changefreq: "weekly", priority: "1.0", lastmod: "2026-09-10" },
+          { path: "/watch", changefreq: "weekly", priority: "0.9", lastmod: "2026-09-11" },
+          { path: "/download", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-28" },
+          { path: "/download-app", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-27" },
+          { path: "/pay", changefreq: "monthly", priority: "0.8", lastmod: "2026-09-10" },
+          { path: "/become-an-instructor", changefreq: "monthly", priority: "0.8", lastmod: "2026-08-16" },
+          { path: "/earningcalc", changefreq: "monthly", priority: "0.5", lastmod: "2026-08-11" },
+          { path: "/privacy", changefreq: "yearly", priority: "0.3", lastmod: "2026-08-16" },
+          { path: "/terms", changefreq: "yearly", priority: "0.3", lastmod: "2026-08-28" },
+          { path: "/refund", changefreq: "yearly", priority: "0.3", lastmod: "2026-08-16" },
+          { path: "/security", changefreq: "yearly", priority: "0.3", lastmod: "2026-08-16" },
+          { path: "/account-deletion", changefreq: "yearly", priority: "0.3", lastmod: "2026-08-16" },
         ];
 
         const urls = entries.map((e) =>
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
+            e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
@@ -37,6 +43,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             .filter(Boolean)
             .join("\n"),
         );
+
 
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,

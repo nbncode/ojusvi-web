@@ -10,11 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AccountDeletionRouteImport } from './routes/account-deletion'
 import { Route as BecomeAnInstructorRouteImport } from './routes/become-an-instructor'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as DownloadAppRouteImport } from './routes/download-app'
 import { Route as EarningcalcRouteImport } from './routes/earningcalc'
+import { Route as ForFamiliesRouteImport } from './routes/for-families'
+import { Route as LearnRouteImport } from './routes/learn'
 import { Route as ManageRouteImport } from './routes/manage'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as Offer99RouteImport } from './routes/offer99'
@@ -29,6 +32,7 @@ import { Route as SubscribedRouteImport } from './routes/subscribed'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as WatchRouteImport } from './routes/watch'
+import { Route as YogaForSeniorsRouteImport } from './routes/yoga-for-seniors'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as ApiCreateSubscriptionRouteImport } from './routes/api/create-subscription'
@@ -48,6 +52,11 @@ import { Route as ApiPublicHooksSyncInstructorApplicationRouteImport } from './r
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountDeletionRoute = AccountDeletionRouteImport.update({
@@ -73,6 +82,16 @@ const DownloadAppRoute = DownloadAppRouteImport.update({
 const EarningcalcRoute = EarningcalcRouteImport.update({
   id: '/earningcalc',
   path: '/earningcalc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForFamiliesRoute = ForFamiliesRouteImport.update({
+  id: '/for-families',
+  path: '/for-families',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManageRoute = ManageRouteImport.update({
@@ -143,6 +162,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const WatchRoute = WatchRouteImport.update({
   id: '/watch',
   path: '/watch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YogaForSeniorsRoute = YogaForSeniorsRouteImport.update({
+  id: '/yoga-for-seniors',
+  path: '/yoga-for-seniors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Char91DotmcpChar93ListToolsRoute =
@@ -230,11 +254,14 @@ const ApiPublicHooksSyncInstructorApplicationRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/account-deletion': typeof AccountDeletionRoute
   '/become-an-instructor': typeof BecomeAnInstructorRoute
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/for-families': typeof ForFamiliesRoute
+  '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
@@ -249,6 +276,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/watch': typeof WatchRoute
+  '/yoga-for-seniors': typeof YogaForSeniorsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
@@ -267,11 +295,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/account-deletion': typeof AccountDeletionRoute
   '/become-an-instructor': typeof BecomeAnInstructorRoute
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/for-families': typeof ForFamiliesRoute
+  '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
@@ -286,6 +317,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/watch': typeof WatchRoute
+  '/yoga-for-seniors': typeof YogaForSeniorsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
@@ -305,11 +337,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/account-deletion': typeof AccountDeletionRoute
   '/become-an-instructor': typeof BecomeAnInstructorRoute
   '/download': typeof DownloadRoute
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
+  '/for-families': typeof ForFamiliesRoute
+  '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
   '/offer99': typeof Offer99Route
@@ -324,6 +359,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/watch': typeof WatchRoute
+  '/yoga-for-seniors': typeof YogaForSeniorsRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/api/create-subscription': typeof ApiCreateSubscriptionRoute
@@ -344,11 +380,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/account-deletion'
     | '/become-an-instructor'
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/for-families'
+    | '/learn'
     | '/manage'
     | '/mcp'
     | '/offer99'
@@ -363,6 +402,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/watch'
+    | '/yoga-for-seniors'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
@@ -381,11 +421,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/account-deletion'
     | '/become-an-instructor'
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/for-families'
+    | '/learn'
     | '/manage'
     | '/mcp'
     | '/offer99'
@@ -400,6 +443,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/watch'
+    | '/yoga-for-seniors'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
@@ -418,11 +462,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/account-deletion'
     | '/become-an-instructor'
     | '/download'
     | '/download-app'
     | '/earningcalc'
+    | '/for-families'
+    | '/learn'
     | '/manage'
     | '/mcp'
     | '/offer99'
@@ -437,6 +484,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/thank-you'
     | '/watch'
+    | '/yoga-for-seniors'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/api/create-subscription'
@@ -456,11 +504,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AccountDeletionRoute: typeof AccountDeletionRoute
   BecomeAnInstructorRoute: typeof BecomeAnInstructorRoute
   DownloadRoute: typeof DownloadRoute
   DownloadAppRoute: typeof DownloadAppRoute
   EarningcalcRoute: typeof EarningcalcRoute
+  ForFamiliesRoute: typeof ForFamiliesRoute
+  LearnRoute: typeof LearnRoute
   ManageRoute: typeof ManageRoute
   McpRoute: typeof McpRoute
   Offer99Route: typeof Offer99Route
@@ -475,6 +526,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   WatchRoute: typeof WatchRoute
+  YogaForSeniorsRoute: typeof YogaForSeniorsRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   ApiCreateSubscriptionRoute: typeof ApiCreateSubscriptionRoute
@@ -499,6 +551,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account-deletion': {
@@ -534,6 +593,20 @@ declare module '@tanstack/react-router' {
       path: '/earningcalc'
       fullPath: '/earningcalc'
       preLoaderRoute: typeof EarningcalcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-families': {
+      id: '/for-families'
+      path: '/for-families'
+      fullPath: '/for-families'
+      preLoaderRoute: typeof ForFamiliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manage': {
@@ -632,6 +705,13 @@ declare module '@tanstack/react-router' {
       path: '/watch'
       fullPath: '/watch'
       preLoaderRoute: typeof WatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yoga-for-seniors': {
+      id: '/yoga-for-seniors'
+      path: '/yoga-for-seniors'
+      fullPath: '/yoga-for-seniors'
+      preLoaderRoute: typeof YogaForSeniorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.mcp/list-tools': {
@@ -744,11 +824,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AccountDeletionRoute: AccountDeletionRoute,
   BecomeAnInstructorRoute: BecomeAnInstructorRoute,
   DownloadRoute: DownloadRoute,
   DownloadAppRoute: DownloadAppRoute,
   EarningcalcRoute: EarningcalcRoute,
+  ForFamiliesRoute: ForFamiliesRoute,
+  LearnRoute: LearnRoute,
   ManageRoute: ManageRoute,
   McpRoute: McpRoute,
   Offer99Route: Offer99Route,
@@ -763,6 +846,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   WatchRoute: WatchRoute,
+  YogaForSeniorsRoute: YogaForSeniorsRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,

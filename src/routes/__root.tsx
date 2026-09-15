@@ -90,10 +90,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ojusvi — Vitality, Brilliance, Strength from within" },
       { name: "twitter:description", content: "A wellness, community and health app for seniors 55+ and their families — daily yoga, live Tambola, and Samvit medicine & records tracking, in your language. Start with 30 days free." },
-{ property: "og:image", content: "https://ojusvi.app/og-image.jpg" },
-      { property: "og:image:width", content: "1086" },
-      { property: "og:image:height", content: "1448" },
+      { property: "og:site_name", content: "Ojusvi" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:image", content: "https://ojusvi.app/og-image.jpg" },
+      { property: "og:image:secure_url", content: "https://ojusvi.app/og-image.jpg" },
+      { property: "og:image:type", content: "image/jpeg" },
+      // Actual intrinsic size of public/og-image.jpg (portrait splash). Declared
+      // truthfully so crawlers do not mis-scale it; not cropped to 1200x630.
+      { property: "og:image:width", content: "916" },
+      { property: "og:image:height", content: "1717" },
+      { property: "og:image:alt", content: "Ojusvi — wellness and companionship app for adults 55+" },
       { name: "twitter:image", content: "https://ojusvi.app/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Ojusvi — wellness and companionship app for adults 55+" },
     ],
     scripts: [
       {
@@ -106,11 +114,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
+          "@id": "https://ojusvi.app/#organization",
           name: "Ojusvi",
+          legalName: "Ojusvi Goodhealth Private Limited",
           url: "https://ojusvi.app",
-          logo: "https://ojusvi.app/ojusvi-logo-round.png",
-          description: "A wellness, community and health app for seniors 55+ and their families — daily yoga, live Tambola, and Samvit medicine & records tracking, in your language.",
-          sameAs: ["https://www.facebook.com/profile.php?id=61570805703707", "https://www.instagram.com/ojusvi.app/"],
+          logo: "https://ojusvi.app/ojusvi-logo-round.webp",
+          image: "https://ojusvi.app/og-image.jpg",
+          description:
+            "Ojusvi is an Indian wellness and companionship app for adults 55+ and their families — live daily yoga, meditation, panchang, satsang, gentle games and everyday health tools, in six Indian languages.",
+          areaServed: "IN",
+          email: "hello@ojusvi.app",
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "hello@ojusvi.app",
+              telephone: "+91-99589-05337",
+              availableLanguage: ["English", "Hindi", "Bengali", "Marathi", "Telugu", "Tamil"],
+            },
+          ],
+          sameAs: [
+            "https://www.facebook.com/profile.php?id=61570805703707",
+            "https://www.instagram.com/ojusvi.app/",
+          ],
         }),
       },
       {
@@ -118,40 +144,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
+          "@id": "https://ojusvi.app/#website",
           name: "Ojusvi",
           url: "https://ojusvi.app",
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: "Ojusvi",
-          applicationCategory: "HealthApplication",
-          operatingSystem: "Android, iOS",
+          inLanguage: "en-IN",
           description:
-            "Daily yoga, panchang, group satsang, gentle games, and quiet companionship — a wellness app for seniors 55+ and their families, in your language.",
-          url: "https://ojusvi.app",
-          image: "https://ojusvi.app/og-image.jpg",
-          offers: [
-            {
-              "@type": "Offer",
-              name: "Annual (billed once for 12 months)",
-              price: "249",
-              priceCurrency: "INR",
-              description: "₹2,988 billed once for 12 months — works out to ₹249/month.",
-              url: "https://ojusvi.app/#pricing",
-            },
-            {
-              "@type": "Offer",
-              name: "Monthly",
-              price: "349",
-              priceCurrency: "INR",
-              description: "Billed monthly, cancel anytime.",
-              url: "https://ojusvi.app/#pricing",
-            },
-          ],
+            "Wellness and companionship app for adults 55+ in India — live yoga, meditation, community activities, panchang, games and everyday health tools in Indian languages.",
+          publisher: { "@id": "https://ojusvi.app/#organization" },
         }),
       },
     ],

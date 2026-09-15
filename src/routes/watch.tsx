@@ -33,6 +33,12 @@ export const Route = createFileRoute("/watch")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://ojusvi.app/watch" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Watch Live Yoga — Ojusvi" },
+      {
+        name: "twitter:description",
+        content:
+          "Join Ojusvi's live daily yoga sessions, guided in your language. Watch on the web with a Full membership.",
+      },
     ],
     links: [{ rel: "canonical", href: "https://ojusvi.app/watch" }],
   }),

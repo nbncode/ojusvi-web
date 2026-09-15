@@ -1,10 +1,29 @@
 # Ojusvi
 
-> Ojusvi is a heartfelt wellness platform for Indian adults 55+ and their families — daily live yoga, meditation, panchang, satsang, gentle games and live Tambola, plus Samvit medicine and health-record tracking, in eight Indian languages.
+> Ojusvi is an Indian wellness and companionship app for adults 55+ and their families, operated by Ojusvi Goodhealth Private Limited. It offers live daily yoga and pranayama, guided meditation, the daily panchang, bhajan and satsang, gentle brain games, live afternoon Tambola with the community, and Samvit — medicine reminders and health records — in six Indian languages.
+
+## Audience
+
+- Adults 55 and over in India, including complete beginners and members who have not exercised in years.
+- Families (sons, daughters, spouses) setting up a daily routine for ageing parents.
+
+## Languages
+
+English, Hindi, Bangla, Marathi, Telugu, Tamil — every screen, not just the classes.
+
+## Platforms
+
+- iOS: https://apps.apple.com/us/app/ojusvi/id6792540529
+- Android: https://play.google.com/store/apps/details?id=com.ojusvi.app
+- Web: live classes can be watched on a laptop at /watch with a Full (Monthly or Annual) membership.
 
 ## Pages
 
-- [Home](/): Overview of Ojusvi's wellness philosophy, daily sessions, languages and pricing.
+- [Home](/): What Ojusvi is, daily sessions, languages and pricing.
+- [About](/about): The company, the audience, and the three wellness areas.
+- [Yoga for Seniors](/yoga-for-seniors): How the yoga program is built for aging bodies — safety, mobility, balance, breathing, ability variations.
+- [For Families](/for-families): Setting parents up with a daily routine; what Ojusvi can and cannot do.
+- [Learn](/learn): Guides on yoga, healthy aging and caregiving.
 - [Watch Live](/watch): Live and upcoming yoga classes, with access details for members.
 - [Download the App](/download-app): Get Ojusvi on iOS and Android.
 - [Annual Membership](/pay): Annual membership — ₹2,988 billed once for 12 months (₹249/month).
@@ -22,6 +41,10 @@
 - Monthly: ₹349/month, recurring — mobile app and laptop access.
 - Annual: ₹2,988 billed once for 12 months (₹249/month) — mobile app and laptop access.
 - Every new user gets the first 30 days free, no card needed.
+
+## Health note
+
+Ojusvi offers general wellness, yoga and lifestyle guidance. It does not diagnose, treat or cure medical conditions and is not a substitute for advice from a doctor. It is not an emergency or monitoring service.
 
 ## Contact
 

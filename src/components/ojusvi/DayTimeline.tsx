@@ -3,13 +3,13 @@ import { Sprig } from "./Sprig";
 
 const day = [
   { time: "5:30 AM", text: "The day's panchang, read like a quiet prayer." },
-  { time: "6:00 AM", text: "Your horoscope delivered everyday" },
+  { time: "6:00 AM", text: "Your horoscope delivered every day" },
   { time: "6:30 AM", text: "Yoga for health & happiness." },
   { time: "8:00 AM", text: "A glass of water, a gentle reminder." },
   { time: "8:30 AM", text: "Meditation before kicking start the day." },
   { time: "11:00 AM", text: "Spiritual wellness with Bhajan clubbing or Gita path" },
   { time: "12:30 PM", text: "A fun round of Tambola with other Ojusvi members." },
-  { time: "1:30 PM", text: "Rejuvinate with 10+ activities" },
+  { time: "1:30 PM", text: "Rejuvenate with 10+ activities" },
   { time: "3:00 PM", text: "Play games & solve puzzles for fun or for mental health." },
   { time: "4:00 PM", text: "Live darshan from a temple far away." },
   { time: "5:00 PM", text: "Gentle aerobics for those who want more than yoga." },

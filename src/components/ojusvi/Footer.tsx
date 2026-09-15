@@ -49,6 +49,14 @@ export function Footer() {
         </p>
 
         <nav className="mt-12 font-serif text-forest text-[18px] leading-[1.9]">
+          <Link to="/about" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">About</Link>
+          <span className="px-1">·</span>
+          <Link to="/yoga-for-seniors" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Yoga for Seniors</Link>
+          <span className="px-1">·</span>
+          <Link to="/for-families" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">For Families</Link>
+          <span className="px-1">·</span>
+          <Link to="/learn" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Learn</Link>
+          <span className="px-1">·</span>
           <Link to="/privacy" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Privacy Policy</Link>
           <span className="px-1">·</span>
           <Link to="/terms" className="inline-flex min-h-12 items-center px-2 hover:text-forest-deep underline-offset-4 hover:underline">Terms &amp; Conditions</Link>
@@ -114,6 +122,12 @@ export function Footer() {
 
         <p className="mt-10 font-hand text-forest/80 text-lg">
           Made with care in India.
+        </p>
+
+        <p className="mt-6 mx-auto max-w-[620px] text-[14px] leading-[1.7] text-ink/60">
+          Ojusvi offers general wellness and yoga guidance. It is not medical
+          advice and does not diagnose or treat any condition. Please consult
+          your doctor before starting a new exercise routine.
         </p>
       </div>
     </footer>

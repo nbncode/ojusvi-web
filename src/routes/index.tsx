@@ -16,21 +16,33 @@ import heroImage from "@/assets/hero-yoga.webp";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ojusvi - Vitality, Brilliance, Strength from within" },
+      { title: "Ojusvi – Senior Wellness App in India | Yoga & Community" },
       {
         name: "description",
         content:
-          "Daily yoga, panchang, group satsang, gentle games, and quiet companionship — a wellness app for seniors 55+ (and their families), in your language.",
+          "Ojusvi is a wellness and companionship app for adults 55+, with live yoga, meditation, community activities, panchang, games and everyday health tools in Indian languages.",
       },
-      { property: "og:title", content: "Ojusvi - Vitality, Brilliance, Strength from within" },
+      {
+        property: "og:title",
+        content: "Ojusvi – Senior Wellness App in India | Yoga & Community",
+      },
       {
         property: "og:description",
         content:
-          "A wellness, community and health app for seniors 55+ and their families — daily yoga, live Tambola, and Samvit medicine & records tracking, in your language. Start with 30 days free.",
+          "A wellness and companionship app for adults 55+ and their families — live daily yoga, meditation, panchang, satsang, Tambola and everyday health tools, in your language. Start with 30 days free.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://ojusvi.app/" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Ojusvi – Senior Wellness App in India | Yoga & Community",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Live daily yoga, meditation, panchang, satsang and everyday health tools for adults 55+, in six Indian languages. 30 days free.",
+      },
     ],
     scripts: [
       {
@@ -57,6 +69,55 @@ export const Route = createFileRoute("/")({
               price: "349",
               priceCurrency: "INR",
               description: "Billed monthly, cancel anytime.",
+              url: "https://ojusvi.app/#pricing",
+            },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MobileApplication",
+          "@id": "https://ojusvi.app/#app",
+          name: "Ojusvi",
+          applicationCategory: "HealthApplication",
+          applicationSubCategory: "Yoga, meditation and senior wellness",
+          operatingSystem: "iOS, Android",
+          url: "https://ojusvi.app/download-app",
+          installUrl: [
+            "https://apps.apple.com/us/app/ojusvi/id6792540529",
+            "https://play.google.com/store/apps/details?id=com.ojusvi.app",
+          ],
+          image: "https://ojusvi.app/og-image.jpg",
+          inLanguage: ["en", "hi", "bn", "mr", "te", "ta"],
+          audience: { "@type": "PeopleAudience", suggestedMinAge: 55 },
+          publisher: { "@id": "https://ojusvi.app/#organization" },
+          description:
+            "Live daily yoga, meditation, panchang, satsang, gentle games, live Tambola and everyday health tools for adults 55+, in six Indian languages.",
+          offers: [
+            {
+              "@type": "Offer",
+              name: "Lite",
+              price: "99",
+              priceCurrency: "INR",
+              description: "₹99/month, recurring — mobile app only.",
+              url: "https://ojusvi.app/#pricing",
+            },
+            {
+              "@type": "Offer",
+              name: "Monthly",
+              price: "349",
+              priceCurrency: "INR",
+              description: "₹349/month, recurring — mobile app and laptop access.",
+              url: "https://ojusvi.app/#pricing",
+            },
+            {
+              "@type": "Offer",
+              name: "Annual",
+              price: "2988",
+              priceCurrency: "INR",
+              description: "₹2,988 billed once for 12 months (₹249/month).",
               url: "https://ojusvi.app/#pricing",
             },
           ],

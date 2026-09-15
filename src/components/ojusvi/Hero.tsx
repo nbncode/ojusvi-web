@@ -19,8 +19,9 @@ export function Hero() {
             Vitality, Brilliance, Strength from within
           </p>
           <p className="mt-6 sm:mt-8 max-w-[480px] text-[16px] md:text-[18px] leading-[1.65] text-ink/80">
-            Daily yoga, panchang, group satsang, gentle games, and quiet
-            companionship — all in your language, on your phone.
+            Ojusvi is an Indian wellness and companionship app for adults 55 and
+            over — daily yoga, panchang, group satsang, gentle games, and quiet
+            companionship, all in your language, on your phone.
           </p>
           <div id="download" className="mt-8 sm:mt-10 hidden md:flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <a

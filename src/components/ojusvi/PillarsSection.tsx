@@ -46,7 +46,7 @@ export function PillarsSection() {
         body="Small puzzles or a lively Tambola call in the afternoon. Meditation when the house grows still."
         features={[
           "Sudoku, ludo, chess, wordle — gentle solo games",
-          "Live Tambola with the community everyday",
+          "Live Tambola with the community every day",
           "Guided meditation, live and on-demand",
         ]}
         proof="Tambola every afternoon — play live with the community."

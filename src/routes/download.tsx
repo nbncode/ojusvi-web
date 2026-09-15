@@ -34,6 +34,12 @@ export const Route = createFileRoute("/download")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://ojusvi.app/download" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Download Ojusvi — iOS & Android" },
+      {
+        name: "twitter:description",
+        content:
+          "Daily yoga, panchang, satsang and gentle companionship — in your language, on your phone.",
+      },
     ],
     scripts: [
       {

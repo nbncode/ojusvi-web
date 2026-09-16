@@ -17,6 +17,7 @@ import { Route as DownloadRouteImport } from './routes/download'
 import { Route as DownloadAppRouteImport } from './routes/download-app'
 import { Route as EarningcalcRouteImport } from './routes/earningcalc'
 import { Route as ForFamiliesRouteImport } from './routes/for-families'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as ManageRouteImport } from './routes/manage'
 import { Route as McpRouteImport } from './routes/mcp'
@@ -87,6 +88,11 @@ const EarningcalcRoute = EarningcalcRouteImport.update({
 const ForFamiliesRoute = ForFamiliesRouteImport.update({
   id: '/for-families',
   path: '/for-families',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnRoute = LearnRouteImport.update({
@@ -261,6 +267,7 @@ export interface FileRoutesByFullPath {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/for-families': typeof ForFamiliesRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
@@ -302,6 +309,7 @@ export interface FileRoutesByTo {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/for-families': typeof ForFamiliesRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
@@ -344,6 +352,7 @@ export interface FileRoutesById {
   '/download-app': typeof DownloadAppRoute
   '/earningcalc': typeof EarningcalcRoute
   '/for-families': typeof ForFamiliesRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRoute
   '/manage': typeof ManageRoute
   '/mcp': typeof McpRoute
@@ -387,6 +396,7 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/for-families'
+    | '/join'
     | '/learn'
     | '/manage'
     | '/mcp'
@@ -428,6 +438,7 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/for-families'
+    | '/join'
     | '/learn'
     | '/manage'
     | '/mcp'
@@ -469,6 +480,7 @@ export interface FileRouteTypes {
     | '/download-app'
     | '/earningcalc'
     | '/for-families'
+    | '/join'
     | '/learn'
     | '/manage'
     | '/mcp'
@@ -511,6 +523,7 @@ export interface RootRouteChildren {
   DownloadAppRoute: typeof DownloadAppRoute
   EarningcalcRoute: typeof EarningcalcRoute
   ForFamiliesRoute: typeof ForFamiliesRoute
+  JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRoute
   ManageRoute: typeof ManageRoute
   McpRoute: typeof McpRoute
@@ -600,6 +613,13 @@ declare module '@tanstack/react-router' {
       path: '/for-families'
       fullPath: '/for-families'
       preLoaderRoute: typeof ForFamiliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn': {
@@ -831,6 +851,7 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadAppRoute: DownloadAppRoute,
   EarningcalcRoute: EarningcalcRoute,
   ForFamiliesRoute: ForFamiliesRoute,
+  JoinRoute: JoinRoute,
   LearnRoute: LearnRoute,
   ManageRoute: ManageRoute,
   McpRoute: McpRoute,

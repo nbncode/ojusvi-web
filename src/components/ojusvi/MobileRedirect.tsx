@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const APP_STORE_URL = "https://apps.apple.com/us/app/ojusvi/id6792540529";
+const APP_STORE_URL = "https://apps.apple.com/in/app/ojusvi/id6792540529";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.ojusvi.app";
 

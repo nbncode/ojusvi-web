@@ -15,5 +15,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [mcpPlugin()],
+    // cloudflare:workers is a Worker runtime builtin — never bundle it.
+    environments: {
+      ssr: { resolve: { external: ["cloudflare:workers"] } },
+    },
   },
 });

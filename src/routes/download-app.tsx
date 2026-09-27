@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { env, waitUntil } from "cloudflare:workers";
 
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.ojusvi.app";
@@ -47,10 +46,10 @@ export const Route = createFileRoute("/download-app")({
           platform = "ios";
         }
 
-        // Secrets are read per-request from the Cloudflare Worker env
-        // bindings (falling back to process.env under nodejs_compat).
-        const pixelId = env["META_PIXEL_ID"] ?? process.env["META_PIXEL_ID"];
-        const capiToken = env["META_CAPI_TOKEN"] ?? process.env["META_CAPI_TOKEN"];
+        // Secrets are read per-request from process.env (injected into the
+        // Worker runtime with nodejs_compat_populate_process_env).
+        const pixelId = process.env["META_PIXEL_ID"];
+        const capiToken = process.env["META_CAPI_TOKEN"];
 
         if (pixelId && capiToken) {
           const fbclid = url.searchParams.get("fbclid");
@@ -90,8 +89,9 @@ export const Route = createFileRoute("/download-app")({
             // Attribution is best-effort: never block or fail the redirect.
           });
 
-          // waitUntil lets the CAPI fetch complete after the 302 is returned.
-          waitUntil(send);
+          // Give the CAPI fetch up to 800ms to complete, then return the
+          // 302 regardless — attribution is best-effort, never blocking.
+          await Promise.race([send, new Promise((r) => setTimeout(r, 800))]);
         }
 
         return new Response(null, {

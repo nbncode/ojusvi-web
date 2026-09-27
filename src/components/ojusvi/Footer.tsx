@@ -89,13 +89,17 @@ export function Footer() {
 
         <div className="mt-10 flex justify-center gap-4 opacity-90">
           <a
-            href="/download-app"
+            href="https://apps.apple.com/us/app/ojusvi/id6792540529"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-12 w-[140px] items-center justify-center rounded-md bg-forest text-parchment text-xs font-medium tracking-wide shadow-sm transition hover:bg-forest-deep"
           >
             App Store
           </a>
           <a
-            href="/download-app"
+            href="https://play.google.com/store/apps/details?id=com.ojusvi.app"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-12 w-[140px] items-center justify-center rounded-md bg-forest text-parchment text-xs font-medium tracking-wide shadow-sm transition hover:bg-forest-deep"
           >
             Google Play

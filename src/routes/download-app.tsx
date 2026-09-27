@@ -89,9 +89,39 @@ export const Route = createFileRoute("/download-app")({
             // Attribution is best-effort: never block or fail the redirect.
           });
 
-          // Give the CAPI fetch up to 800ms to complete, then return the
-          // 302 regardless — attribution is best-effort, never blocking.
-          await Promise.race([send, new Promise((r) => setTimeout(r, 800))]);
+          // Prefer true background execution via the Workers lifecycle
+          // waitUntil; fall back to a bounded 800ms wait only when the
+          // runtime doesn't expose one.
+          const ctx = request as unknown as {
+            waitUntil?: (p: Promise<unknown>) => void;
+            runtime?: {
+              cloudflare?: {
+                context?: { waitUntil?: (p: Promise<unknown>) => void };
+              };
+            };
+          };
+          const waitUntil =
+            ctx.waitUntil?.bind(request) ??
+            ctx.runtime?.cloudflare?.context?.waitUntil?.bind(
+              ctx.runtime.cloudflare.context,
+            );
+          let capiMode: "waituntil" | "race";
+          if (waitUntil) {
+            waitUntil(send);
+            capiMode = "waituntil";
+          } else {
+            await Promise.race([send, new Promise((r) => setTimeout(r, 800))]);
+            capiMode = "race";
+          }
+
+          return new Response(null, {
+            status: 302,
+            headers: {
+              Location: target,
+              "Cache-Control": "no-store",
+              "x-capi-mode": capiMode,
+            },
+          });
         }
 
         return new Response(null, {

@@ -37,6 +37,14 @@ function desktopQrPage(): string {
 <meta property="og:description" content="Get Ojusvi on the App Store or Google Play. 30 days free.">
 <meta property="og:url" content="https://ojusvi.app/download-app">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://ojusvi.app/og-image.jpg">
+<meta property="og:image:secure_url" content="https://ojusvi.app/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="916">
+<meta property="og:image:height" content="1717">
+<meta property="og:image:alt" content="Ojusvi — wellness and companionship app for adults 55+">
+<meta property="og:site_name" content="Ojusvi">
+<meta name="twitter:image" content="https://ojusvi.app/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,10 +59,12 @@ function desktopQrPage(): string {
   a.btn:hover { background: #16291e; }
   .qr { margin-top: 24px; border-radius: 16px; background: #f7f1e3; padding: 20px; box-shadow: 0 8px 30px rgba(31,58,43,.12); }
   p.hand { margin-top: 32px; font-size: 18px; font-style: italic; color: rgba(31,58,43,.8); }
+  a.btn-outline { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; margin-top: 28px; border: 1.5px solid #1f3a2b; border-radius: 9999px; background: transparent; color: #1f3a2b; font-size: 15px; font-weight: 500; letter-spacing: .02em; text-decoration: none; }
+  a.btn-outline:hover { background: #1f3a2b; color: #f7f1e3; }
 </style>
 </head>
 <body>
-  <img class="logo" src="/ojusvi-logo-round.webp" alt="Ojusvi logo" width="96" height="96">
+  <a href="/" aria-label="Ojusvi — go to home page" style="display: inline-block; line-height: 0; text-decoration: none;"><img class="logo" src="/ojusvi-logo-round.webp" alt="Ojusvi logo — home" width="96" height="96"></a>
   <h1>Bring Ojusvi home.</h1>
   <p class="sub">Daily yoga, panchang, satsang and gentle companionship — in your language, on your phone.</p>
   <div class="grid">
@@ -68,6 +78,7 @@ function desktopQrPage(): string {
     </div>
   </div>
   <p class="hand">Scan with your phone's camera.</p>
+  <a class="btn-outline" href="/">Know more about Ojusvi</a>
 </body>
 </html>`;
 }

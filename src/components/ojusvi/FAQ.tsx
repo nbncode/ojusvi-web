@@ -102,6 +102,7 @@ const groups: Group[] = [
       "Will the instructors change over time?",
     ),
   },
+  /* Temporarily hidden — restore this group to bring back plans & payment FAQs.
   {
     title: "Plans & payment",
     items: pick(
@@ -112,6 +113,8 @@ const groups: Group[] = [
       "Can I cancel?",
     ),
   },
+  */
+
   {
     title: "Trust & support",
 items: pick(

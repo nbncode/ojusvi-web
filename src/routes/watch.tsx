@@ -389,10 +389,13 @@ function WatchPage() {
                 "How long are the sessions?",
                 "Which devices can I use?",
                 "Which languages does Ojusvi support?",
+                /* Temporarily hidden — plans & payment questions
                 "What's the difference between the monthly and annual plans?",
                 "Why is the annual plan cheaper?",
                 "Can I cancel?",
                 "How do I subscribe?",
+                */
+
                 "How can I reach you?",
               ]}
             />

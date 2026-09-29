@@ -7,7 +7,8 @@ const links = [
   { label: "Why Ojusvi", href: "/#why" },
   { label: "How It Works", href: "/#how" },
   { label: "A Day", href: "/#day" },
-  { label: "Pricing", href: "/#pricing" },
+  // Hidden for now — restore this line to bring Pricing back to the nav
+  // { label: "Pricing", href: "/#pricing" },
   { label: "Languages", href: "/#languages" },
 ];
 

@@ -174,7 +174,8 @@ function Index() {
         <PillarsSection />
         <DayTimeline />
         <Voices />
-        <Pricing />
+        {/* Hidden for now — restore <Pricing /> to bring the pricing section back */}
+        {false ? <Pricing /> : null}
         <Languages />
         <FAQ />
       </main>

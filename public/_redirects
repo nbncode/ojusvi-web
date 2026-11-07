@@ -1,0 +1,13 @@
+# Redirects for the Ojusvi landing, certificate and vault pages.
+# Place this file at public/_redirects. Format: source destination status
+
+# GoldenYears landing page (file: public/golden-years.html)
+/GoldenYears   /golden-years   301
+/goldenyears   /golden-years   301
+/Golden-Years  /golden-years   301
+
+# Certificate page (file: public/certificate/index.html)
+/Certificate   /certificate/   301
+
+# Vault (file: public/vault.html)
+/Vault         /vault          301

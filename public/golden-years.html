@@ -177,6 +177,13 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
 @media (min-width:768px){.f-brand .tag{font-size:20px}}
 .f-made{margin-top:40px;font-family:var(--f-hand);font-weight:600;color:oklch(0.32 0.06 155 / .8);font-size:18px;line-height:1.75rem}
 .f-disc{margin:24px auto 0;max-width:620px;font-size:14px;line-height:1.7;color:oklch(0.22 0.02 150 / .6)}
+
+.invite{margin-top:28px;text-align:center}
+.invite p.q{margin:0 0 10px;font-size:16px;color:oklch(0.22 0.02 150 / .8)}
+.invite-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:9999px;border:1px solid oklch(0.32 0.06 155 / .35);background:transparent;color:var(--forest);font:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:background-color .15s}
+.invite-btn:hover{background:var(--parchment-deep)}
+.invite-btn:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
+.invite-btn svg{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -298,6 +305,15 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
       </div>
     </section>
 
+    <div class="invite">
+      <p class="q">Know someone who should be there?</p>
+      <button type="button" class="invite-btn" id="invite-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+        Invite someone
+      </button>
+      <p class="copied-msg" id="invite-msg" aria-live="polite"></p>
+    </div>
+
     <p class="disclaimer">This session is for general awareness only and is not legal, tax or financial advice. Please consult a qualified professional for your personal situation.</p>
   </main>
 
@@ -391,6 +407,21 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
         timer = setTimeout(function () { btn.classList.remove("done"); msg.textContent = ""; }, 2500);
       }, function () { btn.classList.remove("done"); msg.textContent = ""; });
     });
+  });
+
+  // Invite someone: native share sheet where available, otherwise WhatsApp with the message pre-filled
+  var INVITE_URL = "https://ojusvi.app/golden-years";
+  var INVITE_TEXT = "Thought you would find this useful: the Ojusvi GoldenYears session for retired and retiring leaders. Practical guidance to protect what you have built and give your family peace of mind. Details and registration: " + INVITE_URL;
+  var inviteBtn = document.getElementById("invite-btn"), inviteMsg = document.getElementById("invite-msg"), inviteTimer;
+  function inviteNote(t) { inviteMsg.textContent = t; clearTimeout(inviteTimer); inviteTimer = setTimeout(function () { inviteMsg.textContent = ""; }, 4000); }
+  function inviteViaWhatsApp() {
+    var w = window.open("https://wa.me/?text=" + encodeURIComponent(INVITE_TEXT), "_blank", "noopener");
+    if (!w) inviteNote("Please allow pop-ups to open WhatsApp.");
+  }
+  inviteBtn.addEventListener("click", function () {
+    if (navigator.share) {
+      navigator.share({ text: INVITE_TEXT }).catch(function (e) { if (!e || e.name !== "AbortError") inviteViaWhatsApp(); });
+    } else { inviteViaWhatsApp(); }
   });
 
   // Analytics: GTM + Meta Pixel, loaded on first interaction or after idle (same as main site)

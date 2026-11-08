@@ -57,6 +57,9 @@ input[aria-invalid="true"]{border-color:var(--err)}
 .msg{min-height:1.4em;margin:8px 2px 0;font-size:.95rem;font-weight:600}
 .msg.err{color:var(--err)} .msg.ok{color:var(--ok)} .msg.info{color:var(--muted)}
 .msg a{color:var(--green-d);word-break:break-all}
+.msg a.join{display:flex;align-items:center;justify-content:center;min-height:54px;margin-top:12px;padding:0 20px;border-radius:16px;background:linear-gradient(180deg,#1D9E75,#0F6E56);color:#fff;font-size:1.05rem;font-weight:700;text-decoration:none;word-break:normal;box-shadow:0 6px 14px rgba(15,110,86,.25)}
+.msg a.join:active{transform:translateY(1px)}
+.msg a.join:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .msg button.link{background:none;border:0;padding:0;margin-left:6px;font:inherit;font-weight:700;color:var(--green-d);text-decoration:underline;cursor:pointer}
 
 .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;margin-top:14px;border:0;border-radius:18px;font:inherit;font-size:1.15rem;font-weight:700;color:#fff;background:linear-gradient(180deg,var(--green),var(--green-d));box-shadow:0 8px 18px rgba(15,110,86,.28);cursor:pointer;transition:transform .08s, box-shadow .15s, filter .15s}
@@ -153,7 +156,7 @@ body.done .result{display:flex}
 var API_URL = 'https://script.google.com/macros/s/AKfycbww2sbxnjUKWeLUBly_69xPJpRPkUAw0ZFwwwEJc6503hFv3R6ek0oHVHZgQh030e0/exec';
 
 var WHATSAPP_COMMUNITY = 'https://chat.whatsapp.com/GINNBMWas4W6YKi6mc91Xk';
-var SHARE_TEXT = 'I am Retirement Ready. You too can be retirement ready on www.ojusvi.app/GoldenYears';
+var SHARE_TEXT = 'I am Retirement Ready. You too can be retirement ready on https://ojusvi.app/golden-years';
 var FILE_NAME = 'Ojusvi-Retirement-Readiness-Certificate.png';
 var REQUEST_TIMEOUT_MS = 30000;   // Apps Script cold starts can take a few seconds
 var DEBOUNCE_MS = 450;
@@ -198,9 +201,10 @@ function setMsg(kind, nodeOrText) {
 }
 function notFoundNode() {
   var f = document.createDocumentFragment();
-  f.appendChild(document.createTextNode("You haven't attended the session yet. Join the Ojusvi WhatsApp Community for all the schedule details! Join "));
+  f.appendChild(document.createTextNode("You haven't attended the session yet. Join the Ojusvi WhatsApp Community for all the schedule details!"));
   var a = document.createElement('a');
-  a.href = WHATSAPP_COMMUNITY; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = WHATSAPP_COMMUNITY;
+  a.className = 'join'; a.href = WHATSAPP_COMMUNITY; a.target = '_blank'; a.rel = 'noopener noreferrer';
+  a.textContent = 'Join Ojusvi Community';
   f.appendChild(a);
   return f;
 }

@@ -204,20 +204,37 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
 .copy:disabled{opacity:.4;cursor:not-allowed}
 .copy:disabled:hover{background:none}
 
-/* ---------- Invite card ---------- */
-.invite{margin-top:48px;border-radius:22px;background:linear-gradient(145deg,var(--forest) 0%,var(--forest-deep) 100%);color:var(--parchment);padding:36px 24px;text-align:center;box-shadow:0 18px 40px -22px oklch(0.26 0.05 155 / .7)}
-@media (min-width:768px){.invite{padding:48px 40px}}
-.invite-ic{display:grid;place-items:center;margin:0 auto 14px;width:56px;height:56px;border-radius:9999px;background:oklch(0.965 0.013 85 / .12);color:#E8C57A}
-.invite-ic svg{width:28px;height:28px}
-.invite h2{margin:0;color:var(--parchment);font-size:28px}
-@media (min-width:768px){.invite h2{font-size:34px}}
-.invite-sub{margin-top:10px;font-size:17px;color:oklch(0.965 0.013 85 / .8)}
-.invite-btn{margin-top:22px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:12px 32px;border-radius:9999px;background:#E8C57A;color:oklch(0.26 0.05 155);font:inherit;font-size:18px;font-weight:600;cursor:pointer;transition:transform .15s,background-color .15s}
-.invite-btn:hover{background:#F0D08E}
-.invite-btn:active{transform:scale(.98)}
-.invite-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.invite-btn svg{width:20px;height:20px}
-.invite-note{margin-top:10px;min-height:24px;font-size:15px;color:oklch(0.965 0.013 85 / .8)}
+/* ---------- Primary: registration card (strongest block on the page) ---------- */
+.reg{background:linear-gradient(150deg,var(--forest) 0%,var(--forest-deep) 100%);border:0;color:var(--parchment);box-shadow:0 24px 48px -24px oklch(0.26 0.05 155 / .75)}
+.reg h2{color:var(--parchment);font-size:30px}
+@media (min-width:768px){.reg h2{font-size:36px}}
+.reg>p{color:oklch(0.965 0.013 85 / .85)}
+.reg .field label{color:#E8C57A}
+.reg .field input{border-color:transparent}
+.reg .field input:focus{outline:3px solid #E8C57A;outline-offset:1px}
+.reg .consent{color:oklch(0.965 0.013 85 / .9)}
+.reg p.form-hint{color:oklch(0.965 0.013 85 / .75)}
+.reg p.form-hint.err{color:#FFB4AB}
+.reg .btn{background:#E8C57A;color:oklch(0.26 0.05 155);min-height:60px;font-size:18px;font-weight:700;padding:14px 36px;box-shadow:0 10px 24px -10px rgb(0 0 0 / .5)}
+.reg .btn:hover{opacity:1;background:#F0D08E}
+.reg .btn[aria-disabled="true"]{opacity:.45;box-shadow:none}
+.reg .btn[aria-disabled="true"]:hover{opacity:.45;background:#E8C57A}
+.reg .btn:focus-visible,.reg .copy:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.reg .copy{width:60px;height:60px;border-color:oklch(0.965 0.013 85 / .45);color:var(--parchment)}
+.reg .copy:hover{background:oklch(0.965 0.013 85 / .12)}
+.reg .copied-msg{color:oklch(0.965 0.013 85 / .85)}
+
+/* ---------- Secondary: invite card (deliberately quieter) ---------- */
+.invite{margin-top:40px;border-radius:18px;border:1px solid oklch(0.32 0.06 155 / .2);background:var(--parchment-deep);padding:24px 20px;text-align:center}
+.invite-ic{display:none}
+.invite h2{margin:0;font-size:22px}
+@media (min-width:768px){.invite h2{font-size:24px}}
+.invite-sub{margin-top:6px;font-size:15px;color:oklch(0.22 0.02 150 / .7)}
+.invite-btn{margin-top:14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 24px;border-radius:9999px;border:1.5px solid var(--forest);background:transparent;color:var(--forest);font:inherit;font-size:16px;font-weight:600;cursor:pointer;transition:background-color .15s}
+.invite-btn:hover{background:oklch(0.32 0.06 155 / .08)}
+.invite-btn:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.invite-btn svg{width:18px;height:18px}
+.invite-note{margin-top:8px;min-height:22px;font-size:14px;color:oklch(0.22 0.02 150 / .7)}
 </style>
 </head>
 <body>

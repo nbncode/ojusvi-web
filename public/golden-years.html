@@ -186,39 +186,13 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
 .perks li{display:inline-flex;align-items:center;gap:8px;border-radius:9999px;background:oklch(0.86 0.09 85 / .35);border:1px solid oklch(0.62 0.12 75 / .35);padding:8px 16px;font-size:15px;font-weight:500;color:oklch(0.35 0.07 75)}
 .perks svg{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ---------- Registration form ---------- */
-.reg-form{margin:24px auto 0;max-width:420px;text-align:left}
-.field{margin-bottom:16px}
-.field label{display:block;margin-bottom:6px;font-size:15px;font-weight:600;color:var(--forest)}
-.field input{width:100%;height:52px;border-radius:14px;border:1px solid oklch(0.32 0.06 155 / .3);background:#fff;padding:0 16px;font:inherit;font-size:17px;color:var(--ink)}
-.field input:focus{outline:2px solid var(--forest);outline-offset:1px;border-color:var(--forest)}
-.field input.bad{border-color:#b3261e}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.consent{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;color:oklch(0.22 0.02 150 / .85);cursor:pointer}
-.consent input{width:22px;height:22px;margin:1px 0 0;flex-shrink:0;accent-color:var(--forest)}
-.reg p.form-hint{margin-top:12px;min-height:22px;font-size:14px;color:oklch(0.22 0.02 150 / .65)}
-.reg p.form-hint.err{color:#b3261e}
-.btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
-.btn[aria-disabled="true"]:hover{opacity:.4}
-.btn:not([aria-disabled="true"]){cursor:pointer}
-.copy:disabled{opacity:.4;cursor:not-allowed}
-.copy:disabled:hover{background:none}
-
 /* ---------- Primary: registration card (strongest block on the page) ---------- */
 .reg{background:linear-gradient(150deg,var(--forest) 0%,var(--forest-deep) 100%);border:0;color:var(--parchment);box-shadow:0 24px 48px -24px oklch(0.26 0.05 155 / .75)}
 .reg h2{color:var(--parchment);font-size:30px}
 @media (min-width:768px){.reg h2{font-size:36px}}
 .reg>p{color:oklch(0.965 0.013 85 / .85)}
-.reg .field label{color:#E8C57A}
-.reg .field input{border-color:transparent}
-.reg .field input:focus{outline:3px solid #E8C57A;outline-offset:1px}
-.reg .consent{color:oklch(0.965 0.013 85 / .9)}
-.reg p.form-hint{color:oklch(0.965 0.013 85 / .75)}
-.reg p.form-hint.err{color:#FFB4AB}
 .reg .btn{background:#E8C57A;color:oklch(0.26 0.05 155);min-height:60px;font-size:18px;font-weight:700;padding:14px 36px;box-shadow:0 10px 24px -10px rgb(0 0 0 / .5)}
 .reg .btn:hover{opacity:1;background:#F0D08E}
-.reg .btn[aria-disabled="true"]{opacity:.45;box-shadow:none}
-.reg .btn[aria-disabled="true"]:hover{opacity:.45;background:#E8C57A}
 .reg .btn:focus-visible,.reg .copy:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .reg .copy{width:60px;height:60px;border-color:oklch(0.965 0.013 85 / .45);color:var(--parchment)}
 .reg .copy:hover{background:oklch(0.965 0.013 85 / .12)}
@@ -277,7 +251,7 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
     <p class="lead">A session designed for retired and retiring leaders — practical guidance to protect what you have built and give your family peace of mind.</p>
 
     <div class="cta-top">
-      <a class="btn" id="top-reg" href="#register" style="gap:10px">Register Now <span aria-hidden="true">↓</span></a>
+      <a class="btn" id="top-reg" data-wa href="https://chat.whatsapp.com/GINNBMWas4W6YKi6mc91Xk" target="_blank" rel="noopener">Register Now</a>
     </div>
 
     <figure class="hero-fig" id="hero-fig" hidden>
@@ -340,25 +314,11 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
       <h2>How to register</h2>
       <p>Join the Ojusvi GoldenYears WhatsApp community to register and receive session details.</p>
 
-      <form class="reg-form" id="reg-form" novalidate autocomplete="on">
-        <div class="field">
-          <label for="reg-name">Your name</label>
-          <input id="reg-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="e.g. Rajesh Kumar" required>
-        </div>
-        <div class="field">
-          <label for="reg-mobile">Mobile number</label>
-          <input id="reg-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="17" placeholder="10-digit mobile number" required>
-        </div>
-        <div class="hp" aria-hidden="true"><label>Leave this empty <input id="reg-hp" name="hp_trap" type="text" tabindex="-1" autocomplete="off"></label></div>
-        <label class="consent"><input id="reg-consent" type="checkbox"> <span>I agree to be contacted on WhatsApp about this session.</span></label>
-        <p class="form-hint" id="form-hint" aria-live="polite">Fill in your details to unlock the button below.</p>
-      </form>
-
       <div class="cta">
         <div class="wa-cta">
           <div class="cta-row">
-            <a class="btn" id="reg-btn" role="link" aria-disabled="true" tabindex="0">Register — Join the WhatsApp Community</a>
-            <button type="button" class="copy" id="copy-btn" disabled aria-label="Copy WhatsApp community link" title="Copy WhatsApp community link">
+            <a class="btn" id="reg-btn" data-wa href="https://chat.whatsapp.com/GINNBMWas4W6YKi6mc91Xk" target="_blank" rel="noopener">Register — Join the WhatsApp Community</a>
+            <button type="button" class="copy" id="copy-btn" aria-label="Copy WhatsApp community link" title="Copy WhatsApp community link">
               <svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               <svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
             </button>
@@ -430,15 +390,16 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
 <script>
 (function () {
   var WHATSAPP_URL = "https://chat.whatsapp.com/GINNBMWas4W6YKi6mc91Xk";
-  // Backend: Google Apps Script (reads the "CTA" tab, writes the "Registrations" tab).
+  // Backend: Google Apps Script (reads the active link and image from the "CTA" tab).
   // The hard-coded link above and no image are the fallback if the script is unreachable.
   var API = "https://script.google.com/macros/s/AKfycbzaL7Orlx9XZzEgi2uW1ciPjN7WZdqYsttxBJLi5BSAeWv_8eg_4hma4uvFo7EOjHJr/exec";
   var LINK_RE = /^https:\/\/(chat\.whatsapp\.com|wa\.me|whatsapp\.com)\//;
   var IMG_RE = /^https:\/\/[^\s"'<>]+$/;
-  var heroFig = document.getElementById("hero-fig"), heroImg = document.getElementById("cta-img");
+  var heroFig = document.getElementById("hero-fig"), heroImg = document.getElementById("cta-img"), copyBtn = document.getElementById("copy-btn");
   function applyLink(u) {
     if (typeof u !== "string" || !LINK_RE.test(u)) return;
-    WHATSAPP_URL = u; if (regBtn) refreshCta();
+    WHATSAPP_URL = u;
+    document.querySelectorAll("a[data-wa]").forEach(function (a) { a.href = u; });
   }
   function applyImage(u) {
     if (typeof u !== "string" || !IMG_RE.test(u) || heroImg.getAttribute("src") === u) return;
@@ -455,59 +416,9 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
     }).catch(function () {});
   } catch (e) {}
 
-  // Registration form: the WhatsApp button and copy button unlock once the form is valid
-  var fName = document.getElementById("reg-name"), fMobile = document.getElementById("reg-mobile"),
-      fConsent = document.getElementById("reg-consent"), fHp = document.getElementById("reg-hp"),
-      hint = document.getElementById("form-hint"), regBtn = document.getElementById("reg-btn"),
-      copyBtn = document.getElementById("copy-btn"), saved = {};
-  function cleanMobile(v) {
-    var d = String(v || "").replace(/\D/g, "");
-    if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
-    else if (d.length === 11 && d.charAt(0) === "0") d = d.slice(1);
-    return /^[6-9]\d{9}$/.test(d) ? d : "";
-  }
-  function nameOk() { var n = fName.value.trim(); return n.length >= 2 && /[A-Za-zÀ-ɏऀ-෿؀-ۿ]/.test(n); }
-  function formOk() { return nameOk() && !!cleanMobile(fMobile.value) && fConsent.checked; }
-  function refreshCta() {
-    var ok = formOk();
-    regBtn.setAttribute("aria-disabled", ok ? "false" : "true");
-    if (ok) regBtn.setAttribute("href", WHATSAPP_URL); else regBtn.removeAttribute("href");
-    copyBtn.disabled = !ok;
-    if (ok) { hint.className = "form-hint"; hint.textContent = "Thank you. Tap the button to join the WhatsApp community."; return; }
-    var m = fMobile.value.trim();
-    fMobile.classList.toggle("bad", m.length >= 10 && !cleanMobile(m));
-    if (m.length >= 10 && !cleanMobile(m)) { hint.className = "form-hint err"; hint.textContent = "Please enter a valid 10-digit Indian mobile number."; }
-    else { hint.className = "form-hint"; hint.textContent = "Fill in your details to unlock the button below."; }
-  }
-  [fName, fMobile].forEach(function (el) { el.addEventListener("input", refreshCta); });
-  refreshCta();
-  fConsent.addEventListener("change", refreshCta);
-  document.getElementById("reg-form").addEventListener("submit", function (e) { e.preventDefault(); });
-
-  // Save details to the sheet. Fire-and-forget so a slow or failed save never blocks joining.
-  function saveRegistration() {
-    var mob = cleanMobile(fMobile.value);
-    if (!mob || saved[mob]) return;
-    saved[mob] = true;
-    var body = JSON.stringify({ action: "register", name: fName.value.trim(), mobile: mob, consent: true, website: fHp.value });
-    try {
-      fetch(API, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: body }).catch(function () {});
-    } catch (e) {}
-  }
-  regBtn.addEventListener("click", function (e) {
-    if (regBtn.getAttribute("aria-disabled") === "true" || !formOk()) { e.preventDefault(); refreshCta(); (nameOk() ? fMobile : fName).focus(); return; }
-    if (typeof window.fbq === 'function') fbq('track', 'Lead');
-    saveRegistration();
-  });
-  regBtn.addEventListener("keydown", function (e) { if (e.key === " ") { e.preventDefault(); regBtn.click(); } });
-
-  // Top button: scroll to the form and focus the first field
-  document.getElementById("top-reg").addEventListener("click", function (e) {
-    e.preventDefault();
-    var sec = document.getElementById("register");
-    sec.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(function () { try { fName.focus({ preventScroll: true }); } catch (x) { fName.focus(); } }, 450);
-  });
+  // Both Register buttons open the WhatsApp community directly. Meta Pixel "Lead" fires first.
+  function trackLead() { if (typeof window.fbq === 'function') fbq('track', 'Lead'); }
+  document.querySelectorAll("a[data-wa]").forEach(function (a) { a.addEventListener("click", trackLead); });
 
   // Nav: scrolled state + mobile menu
   var nav = document.getElementById("nav");
@@ -544,8 +455,6 @@ footer{position:relative;background:var(--parchment);padding:64px 0}
   (function () {
     var msg = document.querySelector(".wa-cta .copied-msg"), timer;
     copyBtn.addEventListener("click", function () {
-      if (!formOk()) return;
-      saveRegistration();
       copyText().then(function () {
         copyBtn.classList.add("done"); msg.textContent = "Link copied";
         clearTimeout(timer);

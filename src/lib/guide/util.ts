@@ -138,6 +138,12 @@ export async function callSheet(env, body) {
   const text = await r.text();
   let j;
   try { j = JSON.parse(text); } catch (e) { let h = ''; try { h = new URL(r.url).host; } catch (_) {} throw new Error('sheet bad response ' + r.status + ' ' + h + ' ' + text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60)); }
+  if (j && j.error === 'forbidden') {
+    const sec = String(env.GUIDE_APPS_SCRIPT_SECRET);
+    const h = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(sec)))).map((x) => x.toString(16).padStart(2, '0')).join('').slice(0, 6);
+    const u = String(env.GUIDE_APPS_SCRIPT_URL);
+    throw new Error('forbidden cf=' + h + '/' + sec.length + ' script=' + (j.fp || 'old-script') + '/' + (j.len || '?') + ' url=' + u.slice(-12));
+  }
   if (!j || !j.ok) throw new Error('sheet error: ' + (j && j.error));
   return j;
 }

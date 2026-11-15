@@ -42,7 +42,7 @@ async function handler({ request }: { request: Request }) {
     await callSheet(env, { action: 'upsert', name, mobile, consent, inviter, source: 'Guide page (unverified)' });
   } catch (e) {
     console.error('sheet write failed', e && e.message);
-    return json({ ok: false, error: 'Something went wrong on our side. Please try again in a minute.', code: String((e && e.message) || 'sheet').slice(0, 160) }, 424);
+    return json({ ok: false, error: 'Something went wrong on our side. Please try again in a minute.', code: String((e && e.message) || 'sheet').slice(0, 200) }, 424);
   }
 
   const token = await signToken(env.GUIDE_SECRET, { t: 'p', m: mobile, n: name, exp: Date.now() + 3600 * 1000 });

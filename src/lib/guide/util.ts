@@ -137,7 +137,7 @@ export async function callSheet(env, body) {
   });
   const text = await r.text();
   let j;
-  try { j = JSON.parse(text); } catch (e) { throw new Error('sheet bad response'); }
+  try { j = JSON.parse(text); } catch (e) { let h = ''; try { h = new URL(r.url).host; } catch (_) {} throw new Error('sheet bad response ' + r.status + ' ' + h + ' ' + text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60)); }
   if (!j || !j.ok) throw new Error('sheet error: ' + (j && j.error));
   return j;
 }

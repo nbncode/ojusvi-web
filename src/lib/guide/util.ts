@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Shared helpers for the Golden Years guide gate (Cloudflare Pages Functions).
 // No dependencies. Uses WebCrypto, available in Workers and Node 18+.
 

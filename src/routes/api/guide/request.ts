@@ -1,8 +1,11 @@
+// @ts-nocheck
+import { createFileRoute } from '@tanstack/react-router';
 // POST /api/guide/request
 // Step 1: save name + mobile to the Access tab (via Apps Script) and start the unlock flow.
-import { callSheet, cleanName, normPhone, json, jsonWithCookies, refDecode, setCookie, signToken, COOKIE_PENDING } from '../../_lib/util.js';
+import { callSheet, cleanName, normPhone, json, jsonWithCookies, refDecode, setCookie, signToken, COOKIE_PENDING } from '@/lib/guide/util';
 
-export async function onRequestPost({ request, env, waitUntil }) {
+async function handler({ request }: { request: Request }) {
+  const env: any = process.env;
   if (!env.GUIDE_SECRET) return json({ ok: false, error: 'server not configured' }, 500);
   let b;
   try { b = await request.json(); } catch (e) { return json({ ok: false, error: 'bad request' }, 400); }
@@ -45,3 +48,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const token = await signToken(env.GUIDE_SECRET, { t: 'p', m: mobile, n: name, exp: Date.now() + 3600 * 1000 });
   return jsonWithCookies({ ok: true, name }, [setCookie(COOKIE_PENDING, token, 3600)]);
 }
+
+export const Route = createFileRoute('/api/guide/request')({
+  server: { handlers: { POST: handler } },
+});
